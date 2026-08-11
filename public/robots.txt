@@ -1,0 +1,32 @@
+# Robots.txt for Yesp Corporation Global (https://yespstudio.com)
+# Make Better Happen.
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: *
+Allow: /
+
+# XML Sitemap Link
+Sitemap: https://yespstudio.com/sitemap.xml
