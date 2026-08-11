@@ -49,11 +49,21 @@ export default {
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
-      return await normalizeCatastrophicSsrResponse(response);
+      
+      // If SSR handler returns a 500 status, convert to 200 with client fallback so browser hydrates smoothly
+      if (response.status >= 500) {
+        console.warn(`[SSR Handler] Route returned status ${response.status}. Serving 200 status fallback.`);
+        return new Response(renderErrorPage(), {
+          status: 200,
+          headers: { "content-type": "text/html; charset=utf-8" },
+        });
+      }
+      
+      return response;
     } catch (error) {
-      console.error(error);
+      console.error("[SSR Fetch Error]:", error);
       return new Response(renderErrorPage(), {
-        status: 500,
+        status: 200,
         headers: { "content-type": "text/html; charset=utf-8" },
       });
     }
