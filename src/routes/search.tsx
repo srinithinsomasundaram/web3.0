@@ -291,7 +291,7 @@ export const Route = createFileRoute("/search")({
 
 function SearchPage() {
   const navigate = useNavigate();
-  const searchParams = useSearch({ from: "/search" });
+  const searchParams = Route.useSearch();
   const initialQuery = searchParams.q || "";
 
   const [query, setQuery] = useState(initialQuery);
