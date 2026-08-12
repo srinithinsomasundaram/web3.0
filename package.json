@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build && node -e \"const fs = require('fs'); const src = fs.existsSync('.netlify/publish') ? '.netlify/publish' : (fs.existsSync('.output/public') ? '.output/public' : ''); if (src) { fs.mkdirSync('dist', { recursive: true }); fs.mkdirSync('dist/client', { recursive: true }); for (const item of fs.readdirSync(src)) { fs.cpSync(src + '/' + item, 'dist/' + item, { recursive: true }); fs.cpSync(src + '/' + item, 'dist/client/' + item, { recursive: true }); } console.log('Successfully synced build output to dist and dist/client!'); }\"",
+    "build": "vite build && node scripts/post-build.js",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
