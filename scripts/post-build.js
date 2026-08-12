@@ -1,28 +1,47 @@
 import fs from "node:fs";
 import path from "node:path";
+import { build } from "vite";
+import react from "@vitejs/plugin-react";
+import tsconfigPaths from "vite-tsconfig-paths";
+import tailwindcss from "@tailwindcss/vite";
 
-const src = fs.existsSync(".netlify/publish")
-  ? ".netlify/publish"
-  : fs.existsSync(".output/public")
-  ? ".output/public"
-  : "";
+async function run() {
+  const src = fs.existsSync(".netlify/publish")
+    ? ".netlify/publish"
+    : fs.existsSync(".output/public")
+    ? ".output/public"
+    : "";
 
-if (src) {
-  fs.mkdirSync("dist", { recursive: true });
-  fs.mkdirSync("dist/client", { recursive: true });
-  
-  for (const item of fs.readdirSync(src)) {
-    fs.cpSync(src + "/" + item, "dist/" + item, { recursive: true });
-    fs.cpSync(src + "/" + item, "dist/client/" + item, { recursive: true });
-  }
+  if (src) {
+    fs.mkdirSync("dist", { recursive: true });
+    fs.mkdirSync("dist/client", { recursive: true });
+    
+    for (const item of fs.readdirSync(src)) {
+      fs.cpSync(src + "/" + item, "dist/" + item, { recursive: true });
+      fs.cpSync(src + "/" + item, "dist/client/" + item, { recursive: true });
+    }
 
-  const assetsDir = path.join("dist", "assets");
-  if (fs.existsSync(assetsDir)) {
-    const files = fs.readdirSync(assetsDir);
-    const mainJs = files.find((f) => /^index-.*\.js$/.test(f));
-    const mainCss = files.find((f) => /^styles-.*\.css$/.test(f));
+    console.log("Building SPA client entry (src/main.tsx)...");
+    await build({
+      configFile: false,
+      plugins: [tailwindcss(), tsconfigPaths({ projects: ["./tsconfig.json"] }), react()],
+      build: {
+        outDir: "dist/assets",
+        emptyOutDir: false,
+        lib: {
+          entry: path.resolve("src/main.tsx"),
+          formats: ["es"],
+          fileName: () => "app-client.js",
+        },
+      },
+    });
 
-    const htmlContent = `<!doctype html>
+    const assetsDir = path.join("dist", "assets");
+    if (fs.existsSync(assetsDir)) {
+      const files = fs.readdirSync(assetsDir);
+      const mainCss = files.find((f) => /^styles-.*\.css$/.test(f));
+
+      const htmlContent = `<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -37,13 +56,24 @@ if (src) {
   </head>
   <body>
     <div id="root"></div>
-    ${mainJs ? `<script type="module" src="/assets/${mainJs}"></script>` : ""}
+    <script type="module" src="/assets/app-client.js"></script>
   </body>
 </html>`;
 
-    fs.writeFileSync("dist/index.html", htmlContent);
-    fs.writeFileSync("dist/client/index.html", htmlContent);
-    fs.writeFileSync(path.join(src, "index.html"), htmlContent);
-    console.log("Successfully generated static index.html with JS bundle:", mainJs, "and CSS bundle:", mainCss);
+      fs.writeFileSync("dist/index.html", htmlContent);
+      fs.writeFileSync("dist/client/index.html", htmlContent);
+      if (fs.existsSync("dist/client/assets")) {
+        fs.cpSync("dist/assets/app-client.js", "dist/client/assets/app-client.js", { force: true });
+      }
+      if (fs.existsSync(src)) {
+        fs.writeFileSync(path.join(src, "index.html"), htmlContent);
+      }
+      console.log("Successfully generated static index.html with SPA client bundle app-client.js!");
+    }
   }
 }
+
+run().catch((err) => {
+  console.error("Post-build error:", err);
+  process.exit(1);
+});
