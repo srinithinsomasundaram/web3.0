@@ -115,11 +115,6 @@ export default function Index() {
 
           <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
             <div className="max-w-4xl space-y-4 sm:space-y-6">
-              {/* Official Brand Slogan Graphic */}
-              <div className="pt-2 pb-1">
-                <MakeBetterHappenLogo size="lg" theme="dark" />
-              </div>
-
               {/* Fixed Height Dark Headline - Full Text Display */}
               <div className="space-y-1">
                 <span className="block text-xl font-extrabold text-slate-300 tracking-tight sm:text-3xl md:text-4xl">

@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import logo from "@/assets/yesp-footer-logo.png";
 import { bookingUrl } from "@/lib/links";
 import { MapPin, Mail, ArrowUpRight, Linkedin, Instagram } from "lucide-react";
-import { MakeBetterHappenLogo } from "@/components/brand/MakeBetterHappenLogo";
 
 export function SiteFooter() {
   return (
@@ -15,14 +14,8 @@ export function SiteFooter() {
               <img src={logo} alt="Yesp Corporation logo" className="h-10 w-10 object-contain" />
               <span className="font-display text-xl font-extrabold tracking-tight">Yesp Corporation</span>
             </div>
-            
-            {/* Official Brand Slogan Graphic */}
-            <div className="py-1">
-              <MakeBetterHappenLogo size="sm" theme="dark" />
-            </div>
-
-            <p className="text-xs opacity-75 max-w-sm leading-relaxed">
-              Custom software backbones, practical AI agents, and intelligent workflow automation built for global enterprises.
+            <p className="text-sm opacity-75 max-w-sm leading-relaxed">
+              Make Better Happen. Built for global enterprises.
             </p>
             <div className="space-y-2 pt-1 text-xs opacity-70 font-medium">
               <p className="flex items-center gap-1.5">

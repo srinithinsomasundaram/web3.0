@@ -31,6 +31,7 @@ import CookiesPage from "./routes/cookies";
 import SitelinksPage from "./routes/sitelinks";
 
 import { CookieConsent } from "./components/site/CookieConsent";
+import { FloatingSloganTag } from "./components/site/FloatingSloganTag";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -84,6 +85,7 @@ export default function App() {
         {/* Catch-all fallback to Home */}
         <Route path="*" element={<HomePage />} />
       </Routes>
+      <FloatingSloganTag />
       <CookieConsent />
     </Router>
   );
