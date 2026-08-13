@@ -5,8 +5,12 @@ import path from "node:path";
 const port = Number(process.env.PORT || process.env.SERVER_PORT || 8080);
 const host = "0.0.0.0";
 
-const distDir = fs.existsSync("dist") ? "dist" : "public";
-console.log(`Starting web server from ${distDir} on ${host}:${port}...`);
+function resolveDistDir() {
+  if (fs.existsSync("dist") && fs.existsSync("dist/index.html")) return "dist";
+  if (fs.existsSync(".output/public") && fs.existsSync(".output/public/index.html")) return ".output/public";
+  if (fs.existsSync("public")) return "public";
+  return "dist";
+}
 
 const mimeTypes = {
   ".html": "text/html; charset=utf-8",
@@ -24,14 +28,14 @@ const mimeTypes = {
 const server = http.createServer((req, res) => {
   let reqPath = (req.url || "/").split("?")[0];
 
-  // 1. Health Check Endpoint for Nimbuz / Load Balancer probes
+  // 1. Health Check Probes for Nimbuz / Load Balancer probes
   if (["/health", "/healthz", "/ping", "/_health", "/api/health"].includes(reqPath)) {
     res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
     res.end("OK");
     return;
   }
 
-  // 2. Same-Origin Email Proxy Endpoint to prevent CORS errors on client forms
+  // 2. Same-Origin Email Proxy Endpoint
   if (req.method === "POST" && reqPath === "/api/send-email") {
     let body = "";
     req.on("data", (chunk) => {
@@ -86,6 +90,7 @@ const server = http.createServer((req, res) => {
   }
 
   // 3. Static SPA File Serving
+  const distDir = resolveDistDir();
   if (reqPath === "/") reqPath = "/index.html";
 
   let filePath = path.join(distDir, reqPath);
@@ -96,6 +101,12 @@ const server = http.createServer((req, res) => {
 
   const ext = path.extname(filePath);
   const contentType = mimeTypes[ext] || "application/octet-stream";
+
+  if (req.method === "HEAD") {
+    res.writeHead(200, { "Content-Type": contentType });
+    res.end();
+    return;
+  }
 
   fs.readFile(filePath, (err, data) => {
     if (err) {
@@ -109,5 +120,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(port, host, () => {
-  console.log(`Server listening on http://${host}:${port}`);
+  console.log(`Server successfully listening on http://${host}:${port}`);
 });
