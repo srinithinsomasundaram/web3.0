@@ -379,12 +379,14 @@ function CareersPage() {
     const form = event.currentTarget;
     const formData = new FormData(form);
 
-    const role = String(formData.get("role") ?? selectedRole ?? "");
-    const name = String(formData.get("name") ?? "");
-    const email = String(formData.get("email") ?? "");
-    const phone = String(formData.get("phone") ?? "");
-    const profile = String(formData.get("profile") ?? "");
-    const message = String(formData.get("message") ?? "");
+    const role = String(formData.get("role") ?? selectedRole ?? "").trim();
+    const name = String(formData.get("name") ?? "").trim();
+    const email = String(formData.get("email") ?? "").trim();
+    const phone = String(formData.get("phone") ?? "").trim();
+    const profile = String(formData.get("profile") ?? "").trim();
+    const message = String(formData.get("message") ?? "").trim();
+
+    const formattedRole = role === "Other" ? "General Application / Talent Network" : role;
 
     setStatus("sending");
     setStatusMessage("");
@@ -404,11 +406,57 @@ function CareersPage() {
       });
       form.reset();
       setResume(null);
-      setSubmittedCandidate({ name, email, role });
+      setSubmittedCandidate({ name, email, role: formattedRole });
       setStatus("sent");
-    } catch (error) {
-      setStatus("error");
-      setStatusMessage(error instanceof Error ? error.message : "Could not send your application.");
+    } catch (serverError) {
+      console.warn("Server RPC failed, trying fallback career application email dispatch:", serverError);
+      try {
+        const targetInternalEmail = "srinithinoffl@gmail.com";
+        await sendWebsiteEmail({
+          subject: `[YESP CAREERS] New Application: ${name} (${formattedRole})`,
+          replyTo: email,
+          to: targetInternalEmail,
+          text: [
+            "[YESP CAREERS] New Job Application Received",
+            "==========================================",
+            `• Position Applied: ${formattedRole}`,
+            `• Candidate Name:   ${name}`,
+            `• Candidate Email:  ${email}`,
+            `• Contact Phone:    ${phone || "Not provided"}`,
+            `• Profile / Link:   ${profile || "Not provided"}`,
+            `• Resume File:      ${resume?.name || "No file uploaded"}`,
+            "",
+            "Cover Note / Candidate Statement:",
+            "----------------------------------------",
+            message,
+            "----------------------------------------",
+            `Submission Timestamp: ${new Date().toLocaleString()}`,
+          ].join("\n"),
+          ...(resume?.base64 && resume?.name
+            ? {
+                attachments: [
+                  {
+                    filename: resume.name,
+                    content: resume.base64.split(",")[1] ?? resume.base64,
+                    contentType: resume.name.endsWith(".pdf")
+                      ? "application/pdf"
+                      : "application/octet-stream",
+                  },
+                ],
+              }
+            : {}),
+        });
+
+        form.reset();
+        setResume(null);
+        setSubmittedCandidate({ name, email, role: formattedRole });
+        setStatus("sent");
+      } catch (fallbackError) {
+        setStatus("error");
+        setStatusMessage(
+          fallbackError instanceof Error ? fallbackError.message : "Could not send your application."
+        );
+      }
     }
   }
 

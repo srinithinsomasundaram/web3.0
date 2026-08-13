@@ -156,9 +156,15 @@ function ContactPage() {
     event.preventDefault();
     const form = event.currentTarget;
     const formData = new FormData(form);
-    const name = String(formData.get("name") ?? "");
-    const email = String(formData.get("email") ?? "");
-    const message = String(formData.get("message") ?? "");
+    const name = String(formData.get("name") ?? "").trim();
+    const email = String(formData.get("email") ?? "").trim();
+    const message = String(formData.get("message") ?? "").trim();
+
+    if (!name || !email || !message) {
+      setStatus("error");
+      setStatusMessage("Please fill in your name, email, and message.");
+      return;
+    }
 
     setStatus("sending");
     setStatusMessage("");
@@ -170,11 +176,36 @@ function ContactPage() {
       form.reset();
       setSubmittedData({ name, email });
       setStatus("sent");
-    } catch (error) {
-      setStatus("error");
-      setStatusMessage(
-        error instanceof Error ? error.message : "Could not send message. Please try again."
-      );
+    } catch (serverError) {
+      console.warn("Server RPC failed, trying fallback email dispatch:", serverError);
+      try {
+        const targetInternalEmail = "srinithinoffl@gmail.com";
+        await sendWebsiteEmail({
+          subject: `[YESP CONTACT] New Client Enquiry from ${name}`,
+          to: targetInternalEmail,
+          replyTo: email,
+          text: [
+            "[YESP CONTACT] New Client Enquiry Received",
+            "==========================================",
+            `• Sender Name:  ${name}`,
+            `• Sender Email: ${email}`,
+            `• Timestamp:    ${new Date().toLocaleString()}`,
+            "",
+            "Enquiry Message:",
+            "----------------------------------------",
+            message,
+            "----------------------------------------",
+          ].join("\n"),
+        });
+        form.reset();
+        setSubmittedData({ name, email });
+        setStatus("sent");
+      } catch (fallbackError) {
+        setStatus("error");
+        setStatusMessage(
+          fallbackError instanceof Error ? fallbackError.message : "Could not send message. Please try again."
+        );
+      }
     }
   }
 
