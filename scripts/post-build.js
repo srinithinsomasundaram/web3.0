@@ -24,6 +24,12 @@ async function run() {
     console.log("Building SPA client entry (src/main.tsx)...");
     await build({
       configFile: false,
+      define: {
+        "process.env.NODE_ENV": JSON.stringify("production"),
+        "process.env.TSS_ROUTER_BASEPATH": JSON.stringify(""),
+        "process.env": {},
+        "global": "window",
+      },
       plugins: [tailwindcss(), tsconfigPaths({ projects: ["./tsconfig.json"] }), react()],
       build: {
         outDir: "dist/assets",
@@ -53,6 +59,7 @@ async function run() {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" />
     ${mainCss ? `<link rel="stylesheet" href="/assets/${mainCss}" />` : ""}
+    <script>window.process = window.process || { env: { NODE_ENV: 'production' } };</script>
   </head>
   <body>
     <div id="root"></div>
