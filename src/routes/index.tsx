@@ -13,6 +13,7 @@ import {
   Cpu,
   HeartPulse,
   Factory,
+  Sparkles,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
