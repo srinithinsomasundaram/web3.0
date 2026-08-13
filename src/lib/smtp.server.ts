@@ -13,6 +13,26 @@ type WebsiteEmail = {
 };
 
 export async function sendWebsiteEmail({ subject, replyTo, text, to, attachments }: WebsiteEmail) {
+  if (typeof window !== "undefined") {
+    // Client-side browser execution: Route through same-origin /api/send-email to prevent CORS preflight blocks
+    const res = await fetch("/api/send-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ subject, replyTo, text, to, attachments }),
+    });
+
+    const resData = (await res.json()) as any;
+    if (res.ok && resData?.ok) {
+      return { ok: true, id: resData?.id };
+    } else {
+      throw new Error(
+        resData?.error?.message ||
+          (typeof resData?.error === "string" ? resData.error : "Email dispatch failed. Please try again.")
+      );
+    }
+  }
+
+  // Server-side Node.js execution
   const host = typeof process !== "undefined" ? process.env?.SMTP_HOST : undefined;
   const port = Number((typeof process !== "undefined" ? process.env?.SMTP_PORT : undefined) ?? "587");
   const user = typeof process !== "undefined" ? process.env?.SMTP_USER : undefined;

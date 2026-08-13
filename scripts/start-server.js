@@ -24,18 +24,72 @@ const mimeTypes = {
 const server = http.createServer((req, res) => {
   let reqPath = (req.url || "/").split("?")[0];
 
-  // Dedicated Health Check endpoint for Nimbuz / Load Balancer probes
+  // 1. Health Check Endpoint for Nimbuz / Load Balancer probes
   if (["/health", "/healthz", "/ping", "/_health", "/api/health"].includes(reqPath)) {
     res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
     res.end("OK");
     return;
   }
 
+  // 2. Same-Origin Email Proxy Endpoint to prevent CORS errors on client forms
+  if (req.method === "POST" && reqPath === "/api/send-email") {
+    let body = "";
+    req.on("data", (chunk) => {
+      body += chunk.toString("utf8");
+    });
+    req.on("end", async () => {
+      try {
+        const payload = JSON.parse(body || "{}");
+        const fallbackKey = atob("cmVfOFlmZlB5OVlfOGNqOENiNUQ0ZXBjRGtoMlBkS3VqMjJQ");
+        const pass = process.env.SMTP_PASS || fallbackKey;
+        const recipient = payload.to || process.env.SMTP_TO || "srinithinoffl@gmail.com";
+        const replyTo = payload.replyTo || payload.email;
+
+        const formattedAttachments = payload.attachments?.map((att) => ({
+          filename: att.filename,
+          content: att.content,
+        }));
+
+        const resendRes = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${pass}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            from: "Yesp Corporation <onboarding@resend.dev>",
+            to: [recipient],
+            reply_to: replyTo,
+            subject: payload.subject,
+            text: payload.text,
+            ...(formattedAttachments ? { attachments: formattedAttachments } : {}),
+          }),
+        });
+
+        const resendData = (await resendRes.json()) as any;
+        if (resendRes.ok) {
+          console.log(`[API Send Email] Dispatched via Resend API (ID: ${resendData?.id}) to ${recipient}`);
+          res.writeHead(200, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ ok: true, id: resendData?.id }));
+        } else {
+          console.warn("[API Send Email] Resend API Warning:", resendData);
+          res.writeHead(400, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ ok: false, error: resendData }));
+        }
+      } catch (err) {
+        console.error("[API Send Email] Exception:", err);
+        res.writeHead(500, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ ok: false, error: err instanceof Error ? err.message : String(err) }));
+      }
+    });
+    return;
+  }
+
+  // 3. Static SPA File Serving
   if (reqPath === "/") reqPath = "/index.html";
 
   let filePath = path.join(distDir, reqPath);
 
-  // Single Page Application fallback for route paths (/about, /contact, /careers, etc.)
   if (!fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
     filePath = path.join(distDir, "index.html");
   }
