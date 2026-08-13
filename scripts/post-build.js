@@ -33,6 +33,7 @@ async function run() {
       resolve: {
         alias: {
           "@": path.resolve("src"),
+          "@tanstack/start-storage-context": path.resolve("src/lib/async-hooks-shim.ts"),
           "node:async_hooks": path.resolve("src/lib/async-hooks-shim.ts"),
           "async_hooks": path.resolve("src/lib/async-hooks-shim.ts"),
           "node:net": path.resolve("src/lib/empty-shim.ts"),
