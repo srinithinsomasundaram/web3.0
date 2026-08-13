@@ -30,6 +30,17 @@ async function run() {
         "process.env": {},
         "global": "window",
       },
+      resolve: {
+        alias: {
+          "@": path.resolve("src"),
+          "node:async_hooks": path.resolve("src/lib/async-hooks-shim.ts"),
+          "async_hooks": path.resolve("src/lib/async-hooks-shim.ts"),
+          "node:net": path.resolve("src/lib/empty-shim.ts"),
+          "node:tls": path.resolve("src/lib/empty-shim.ts"),
+          "net": path.resolve("src/lib/empty-shim.ts"),
+          "tls": path.resolve("src/lib/empty-shim.ts"),
+        },
+      },
       plugins: [tailwindcss(), tsconfigPaths({ projects: ["./tsconfig.json"] }), react()],
       build: {
         outDir: "dist/assets",
