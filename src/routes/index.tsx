@@ -245,17 +245,24 @@ function Index() {
 
               {/* Action CTA Buttons */}
               <div className="flex flex-wrap items-center gap-2.5 pt-2 sm:gap-4">
+                <Link
+                  to="/yesp-core"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-brand px-5 py-2.5 text-xs sm:px-7 sm:py-3.5 sm:text-sm font-bold text-primary-foreground shadow-elevated transition-transform hover:-translate-y-0.5"
+                >
+                  <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                  <span>Yesp Core</span>
+                </Link>
                 <a
                   href={bookingUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-brand px-5 py-2.5 text-xs sm:px-7 sm:py-3.5 sm:text-sm font-bold text-primary-foreground shadow-elevated transition-transform hover:-translate-y-0.5"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-5 py-2.5 text-xs sm:px-6 sm:py-3.5 sm:text-sm font-semibold text-white transition-all hover:bg-white/20"
                 >
                   Book a Call <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 </a>
                 <a
                   href="#solutions"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-5 py-2.5 text-xs sm:px-6 sm:py-3.5 sm:text-sm font-semibold text-white transition-all hover:bg-white/20"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-black/20 backdrop-blur-md px-4 py-2.5 text-xs font-medium text-slate-300 transition-all hover:bg-white/10"
                 >
                   Explore Solutions
                 </a>

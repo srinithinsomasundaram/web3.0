@@ -26,6 +26,9 @@ export function SiteHeader() {
 
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-6 text-xs font-semibold text-muted-foreground lg:flex">
+          <Link to="/yesp-core" className="transition-colors hover:text-foreground text-primary font-bold" activeProps={{ className: "text-primary font-extrabold" }}>
+            Yesp Core
+          </Link>
           <a href="/#solutions" className="transition-colors hover:text-foreground">Solutions</a>
           <a href="/#process" className="transition-colors hover:text-foreground">Process</a>
           <Link to="/about" className="transition-colors hover:text-foreground" activeProps={{ className: "text-foreground font-bold" }}>

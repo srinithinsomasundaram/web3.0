@@ -76,6 +76,9 @@ export function SiteFooter() {
             <p className="text-xs font-bold uppercase tracking-wider text-primary">Solutions & Work</p>
             <ul className="space-y-2.5 text-sm opacity-80 font-medium">
               <li>
+                <Link to="/yesp-core" className="hover:opacity-100 transition-opacity font-bold text-primary">Yesp Core</Link>
+              </li>
+              <li>
                 <Link to="/tech-expertise" className="hover:opacity-100 transition-opacity">Technical Expertise</Link>
               </li>
               <li>

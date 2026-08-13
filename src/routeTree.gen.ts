@@ -19,6 +19,7 @@ import { Route as FounderRouteImport } from './routes/founder'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as SitelinksRouteImport } from './routes/sitelinks'
 import { Route as TechExpertiseRouteImport } from './routes/tech-expertise'
+import { Route as YespCoreRouteImport } from './routes/yesp-core'
 import { Route as ArticlesIndexRouteImport } from './routes/articles.index'
 import { Route as ArticlesBuildingCustomEnterpriseSoftwareVsSaasRouteImport } from './routes/articles.building-custom-enterprise-software-vs-saas'
 import { Route as ArticlesEliminatingDataSilosWithZeroLatencyIntegrationsRouteImport } from './routes/articles.eliminating-data-silos-with-zero-latency-integrations'
@@ -82,6 +83,11 @@ const SitelinksRoute = SitelinksRouteImport.update({
 const TechExpertiseRoute = TechExpertiseRouteImport.update({
   id: '/tech-expertise',
   path: '/tech-expertise',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const YespCoreRoute = YespCoreRouteImport.update({
+  id: '/yesp-core',
+  path: '/yesp-core',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ArticlesIndexRoute = ArticlesIndexRouteImport.update({
@@ -176,6 +182,7 @@ export interface FileRoutesByFullPath {
   '/search': typeof SearchRoute
   '/sitelinks': typeof SitelinksRoute
   '/tech-expertise': typeof TechExpertiseRoute
+  '/yesp-core': typeof YespCoreRoute
   '/articles/building-custom-enterprise-software-vs-saas': typeof ArticlesBuildingCustomEnterpriseSoftwareVsSaasRoute
   '/articles/eliminating-data-silos-with-zero-latency-integrations': typeof ArticlesEliminatingDataSilosWithZeroLatencyIntegrationsRoute
   '/articles/eroded-coimbatore-bengaluru-tech-lineage': typeof ArticlesErodedCoimbatoreBengaluruTechLineageRoute
@@ -202,6 +209,7 @@ export interface FileRoutesByTo {
   '/search': typeof SearchRoute
   '/sitelinks': typeof SitelinksRoute
   '/tech-expertise': typeof TechExpertiseRoute
+  '/yesp-core': typeof YespCoreRoute
   '/articles/building-custom-enterprise-software-vs-saas': typeof ArticlesBuildingCustomEnterpriseSoftwareVsSaasRoute
   '/articles/eliminating-data-silos-with-zero-latency-integrations': typeof ArticlesEliminatingDataSilosWithZeroLatencyIntegrationsRoute
   '/articles/eroded-coimbatore-bengaluru-tech-lineage': typeof ArticlesErodedCoimbatoreBengaluruTechLineageRoute
@@ -229,6 +237,7 @@ export interface FileRoutesById {
   '/search': typeof SearchRoute
   '/sitelinks': typeof SitelinksRoute
   '/tech-expertise': typeof TechExpertiseRoute
+  '/yesp-core': typeof YespCoreRoute
   '/articles/building-custom-enterprise-software-vs-saas': typeof ArticlesBuildingCustomEnterpriseSoftwareVsSaasRoute
   '/articles/eliminating-data-silos-with-zero-latency-integrations': typeof ArticlesEliminatingDataSilosWithZeroLatencyIntegrationsRoute
   '/articles/eroded-coimbatore-bengaluru-tech-lineage': typeof ArticlesErodedCoimbatoreBengaluruTechLineageRoute
@@ -257,6 +266,7 @@ export interface FileRouteTypes {
     | '/search'
     | '/sitelinks'
     | '/tech-expertise'
+    | '/yesp-core'
     | '/articles/building-custom-enterprise-software-vs-saas'
     | '/articles/eliminating-data-silos-with-zero-latency-integrations'
     | '/articles/eroded-coimbatore-bengaluru-tech-lineage'
@@ -283,6 +293,7 @@ export interface FileRouteTypes {
     | '/search'
     | '/sitelinks'
     | '/tech-expertise'
+    | '/yesp-core'
     | '/articles/building-custom-enterprise-software-vs-saas'
     | '/articles/eliminating-data-silos-with-zero-latency-integrations'
     | '/articles/eroded-coimbatore-bengaluru-tech-lineage'
@@ -309,6 +320,7 @@ export interface FileRouteTypes {
     | '/search'
     | '/sitelinks'
     | '/tech-expertise'
+    | '/yesp-core'
     | '/articles/building-custom-enterprise-software-vs-saas'
     | '/articles/eliminating-data-silos-with-zero-latency-integrations'
     | '/articles/eroded-coimbatore-bengaluru-tech-lineage'
@@ -336,6 +348,7 @@ export interface RootRouteChildren {
   SearchRoute: typeof SearchRoute
   SitelinksRoute: typeof SitelinksRoute
   TechExpertiseRoute: typeof TechExpertiseRoute
+  YespCoreRoute: typeof YespCoreRoute
   ArticlesBuildingCustomEnterpriseSoftwareVsSaasRoute: typeof ArticlesBuildingCustomEnterpriseSoftwareVsSaasRoute
   ArticlesEliminatingDataSilosWithZeroLatencyIntegrationsRoute: typeof ArticlesEliminatingDataSilosWithZeroLatencyIntegrationsRoute
   ArticlesErodedCoimbatoreBengaluruTechLineageRoute: typeof ArticlesErodedCoimbatoreBengaluruTechLineageRoute
@@ -422,6 +435,13 @@ declare module '@tanstack/react-router' {
       path: '/tech-expertise'
       fullPath: '/tech-expertise'
       preLoaderRoute: typeof TechExpertiseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/yesp-core': {
+      id: '/yesp-core'
+      path: '/yesp-core'
+      fullPath: '/yesp-core'
+      preLoaderRoute: typeof YespCoreRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/articles/': {
@@ -536,6 +556,7 @@ const rootRouteChildren: RootRouteChildren = {
   SearchRoute: SearchRoute,
   SitelinksRoute: SitelinksRoute,
   TechExpertiseRoute: TechExpertiseRoute,
+  YespCoreRoute: YespCoreRoute,
   ArticlesBuildingCustomEnterpriseSoftwareVsSaasRoute:
     ArticlesBuildingCustomEnterpriseSoftwareVsSaasRoute,
   ArticlesEliminatingDataSilosWithZeroLatencyIntegrationsRoute:
