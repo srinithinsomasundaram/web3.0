@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { caseStudies } from "@/lib/case-studies";
@@ -15,111 +15,6 @@ import {
   Factory,
   Sparkles,
 } from "lucide-react";
-
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Yesp - India | Make Better Happen" },
-      {
-        name: "description",
-        content:
-          "Yesp Corporation builds custom enterprise software, practical AI agents, and intelligent workflow automation for global clients across Tech, Medical, and Manufacturing sectors.",
-      },
-      { name: "keywords", content: "Yesp Corporation, Enterprise Software, Tech Software, Healthcare Systems, Manufacturing Software, AI Agents, Erode, Coimbatore, Bengaluru" },
-      { name: "geo.region", content: "IN-KA;IN-TN" },
-      { name: "geo.placename", content: "Bengaluru, Coimbatore, Erode, India" },
-      { name: "geo.position", content: "12.9716;77.5946" },
-      { name: "ICBM", content: "12.9716, 77.5946" },
-      { property: "og:title", content: "Yesp - India | Make Better Happen" },
-      {
-        property: "og:description",
-        content:
-          "Custom enterprise software, practical AI agents, and automated workflow systems built for global enterprises in Tech, Medical, and Manufacturing.",
-      },
-      { property: "og:image", content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Yesp - India | Make Better Happen" },
-      { name: "twitter:description", content: "Enterprise software, applied AI agents, and intelligent automation built for global scale." },
-      { name: "twitter:image", content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg" },
-    ],
-    links: [{ rel: "canonical", href: "/" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "Corporation",
-              "@id": "https://yespstudio.com/#corporation",
-              name: "Yesp Corporation",
-              alternateName: ["Yesp", "Yesp Digital", "Yesp AI Labs", "Yesp Growth"],
-              legalName: "Yesp Corporation",
-              slogan: "Make Better Happen.",
-              description:
-                "Global enterprise technology company building custom software, practical AI agents, and intelligent workflow automation for Tech, Medical, and Manufacturing enterprises.",
-              url: "https://yespstudio.com",
-              logo: "https://yespstudio.com/assets/yesp-footer-logo.png",
-              email: "hello@yespstudio.com",
-              areaServed: "Global",
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: "Bengaluru",
-                addressRegion: "Karnataka",
-                addressCountry: "IN",
-              },
-            },
-            {
-              "@type": "WebSite",
-              "@id": "https://yespstudio.com/#website",
-              url: "https://yespstudio.com",
-              name: "Yesp Corporation",
-              publisher: {
-                "@id": "https://yespstudio.com/#corporation",
-              },
-              potentialAction: {
-                "@type": "SearchAction",
-                target: {
-                  "@type": "EntryPoint",
-                  urlTemplate: "https://yespstudio.com/articles?q={search_term_string}",
-                },
-                "query-input": "required name=search_term_string",
-              },
-            },
-            {
-              "@type": "SiteNavigationElement",
-              "@id": "https://yespstudio.com/#navigation",
-              name: [
-                "About Yesp Corporation",
-                "Founder Profile",
-                "Yesp Digital Services",
-                "Yesp AI Labs",
-                "Selected Case Studies",
-                "Executive Articles",
-                "Official Press Center",
-                "100% Remote Careers",
-                "Contact & Booking"
-              ],
-              url: [
-                "https://yespstudio.com/about",
-                "https://yespstudio.com/founder",
-                "https://yespstudio.com/services/digital",
-                "https://yespstudio.com/services/ai-labs",
-                "https://yespstudio.com/case-studies",
-                "https://yespstudio.com/articles",
-                "https://yespstudio.com/press",
-                "https://yespstudio.com/careers",
-                "https://yespstudio.com/contact"
-              ]
-            },
-          ],
-        }),
-      },
-    ],
-  }),
-  component: Index,
-});
 
 const heroPhrases = [
   "Enterprise Software.",
@@ -180,7 +75,7 @@ const reasons = [
   "Foundational commitment: Make Better Happen.",
 ];
 
-function Index() {
+export default function Index() {
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [activeStepIndex, setActiveStepIndex] = useState(0);

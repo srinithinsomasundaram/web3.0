@@ -1,38 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
-
-export const Route = createFileRoute("/cookies")({
-  head: () => ({
-    meta: [
-      { title: "Cookie Policy | Yesp Corporation — Make Better Happen." },
-      {
-        name: "description",
-        content:
-          "How Yesp Corporation uses cookies on yespstudio.com, the categories of cookies we set, and how you can control them in your browser.",
-      },
-      { name: "keywords", content: "Cookie Policy, Privacy Policy, Yesp Corporation Legal, Data Privacy, Cookie Consent" },
-      { name: "geo.region", content: "IN-KA;IN-TN" },
-      { name: "geo.placename", content: "Bengaluru, Coimbatore, Erode, India" },
-      { name: "geo.position", content: "12.9716;77.5946" },
-      { name: "ICBM", content: "12.9716, 77.5946" },
-      { property: "og:title", content: "Cookie Policy — Yesp Corporation" },
-      {
-        property: "og:description",
-        content: "Details on the cookies Yesp Corporation uses and how to manage your browser preferences.",
-      },
-      { property: "og:image", content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Cookie Policy — Yesp Corporation" },
-      { name: "twitter:description", content: "Details on cookies used by Yesp Corporation." },
-      { name: "twitter:image", content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg" },
-      { name: "robots", content: "index, follow" },
-    ],
-    links: [{ rel: "canonical", href: "/cookies" }],
-  }),
-  component: CookiePolicy,
-});
 
 const categories = [
   {
@@ -49,7 +17,7 @@ const categories = [
   },
 ];
 
-function CookiePolicy() {
+export default function CookiePolicy() {
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />

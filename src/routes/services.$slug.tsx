@@ -1,119 +1,17 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { Link, useParams, Navigate } from "react-router-dom";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { bookingUrl } from "@/lib/links";
 import { getService } from "@/lib/services";
-import { MapPin, Globe, CheckCircle2, ArrowRight } from "lucide-react";
+import { MapPin, CheckCircle2, ArrowRight } from "lucide-react";
 
-export const Route = createFileRoute("/services/$slug")({
-  loader: ({ params }) => {
-    const service = getService(params.slug);
+export default function ServiceDetailPage() {
+  const { slug } = useParams<{ slug: string }>();
+  const service = getService(slug || "digital");
 
-    if (!service) {
-      throw notFound();
-    }
-
-    return { service };
-  },
-  head: ({ loaderData }) => {
-    const serviceName = loaderData?.service?.name ?? "Enterprise Services";
-    const serviceTitle = loaderData?.service?.title ?? "Solutions & Automation";
-    const serviceIntro = loaderData?.service?.intro ?? "Yesp Corporation enterprise capabilities.";
-    const serviceSlug = loaderData?.service?.slug ?? "digital";
-
-    return {
-      meta: [
-        {
-          title: `${serviceName} — ${serviceTitle} | Yesp Corporation Global Team`,
-        },
-        {
-          name: "description",
-          content: `${serviceIntro} Yesp Corporation Global Team delivers enterprise software, AI agents, and workflow automation across Erode, Coimbatore, Bengaluru, India and global markets.`,
-        },
-        {
-          name: "keywords",
-          content: `${serviceName}, ${serviceTitle}, Enterprise Software India, AI Agents Bengaluru, Systems Integration Coimbatore, Erode Engineering, Yesp Corporation Global, 100% Remote Delivery`,
-        },
-        { name: "geo.region", content: "IN-KA;IN-TN" },
-        { name: "geo.placename", content: "Bengaluru, Coimbatore, Erode, India" },
-        { name: "geo.position", content: "12.9716;77.5946" },
-        { name: "ICBM", content: "12.9716, 77.5946" },
-        {
-          property: "og:title",
-          content: `${serviceName} — ${serviceTitle} | Yesp Corporation Global Team`,
-        },
-        {
-          property: "og:description",
-          content: `${serviceIntro} Engineered by Yesp Corporation Global Team.`,
-        },
-        {
-          property: "og:image",
-          content: "https://yespstudio.com/assets/yesp-footer-logo.png",
-        },
-        { property: "og:type", content: "website" },
-        {
-          name: "twitter:title",
-          content: `${serviceName} — Yesp Corporation Global Team`,
-        },
-        {
-          name: "twitter:description",
-          content: serviceIntro,
-        },
-        {
-          name: "twitter:image",
-          content: "https://yespstudio.com/assets/yesp-footer-logo.png",
-        },
-      ],
-      links: [{ rel: "canonical", href: `/services/${serviceSlug}` }],
-      scripts: [
-        {
-          type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@graph": [
-              {
-                "@type": "Service",
-                "@id": `https://yespstudio.com/services/${serviceSlug}#service`,
-                name: serviceName,
-                serviceType: serviceTitle,
-                description: serviceIntro,
-                provider: {
-                  "@type": "Corporation",
-                  name: "Yesp Corporation Global Team",
-                  slogan: "Make Better Happen.",
-                  url: "https://yespstudio.com",
-                  logo: "https://yespstudio.com/assets/yesp-footer-logo.png",
-                  email: "hello@yespstudio.com",
-                },
-                areaServed: [
-                  { "@type": "Country", name: "Global" },
-                  { "@type": "Country", name: "India" },
-                ],
-                availableChannel: {
-                  "@type": "ServiceChannel",
-                  serviceUrl: `https://yespstudio.com/services/${serviceSlug}`,
-                  serviceLocation: {
-                    "@type": "Place",
-                    name: "Bengaluru, Karnataka, India",
-                    geo: {
-                      "@type": "GeoCoordinates",
-                      latitude: "12.9716",
-                      longitude: "77.5946",
-                    },
-                  },
-                },
-              },
-            ],
-          }),
-        },
-      ],
-    };
-  },
-  component: ServiceDetailPage,
-});
-
-function ServiceDetailPage() {
-  const { service } = Route.useLoaderData();
+  if (!service) {
+    return <Navigate to="/" replace />;
+  }
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
@@ -125,8 +23,7 @@ function ServiceDetailPage() {
           <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
             <div className="flex flex-wrap items-center gap-3">
               <Link
-                to="/"
-                hash="solutions"
+                to="/#solutions"
                 className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-foreground"
               >
                 Services

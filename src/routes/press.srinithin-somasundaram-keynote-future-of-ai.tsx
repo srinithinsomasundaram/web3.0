@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import logo from "@/assets/yesp-footer-logo.png";
 import founderImage from "@/assets/founder-srinithin-somasundaram.jpg";
 import { SiteHeader } from "@/components/site/SiteHeader";
@@ -17,82 +17,7 @@ import {
   ChevronLeft,
 } from "lucide-react";
 
-export const Route = createFileRoute("/press/srinithin-somasundaram-keynote-future-of-ai")({
-  head: () => ({
-    meta: [
-      { title: "Press Release: Srinithin Somasundaram Keynote on Practical AI & Enterprise Architecture | Yesp Corporation" },
-      {
-        name: "description",
-        content:
-          "Official Press Release: Srinithin Somasundaram, Founder & CEO of Yesp Corporation, presents executive address on building practical enterprise AI architectures and system backbones.",
-      },
-      {
-        name: "keywords",
-        content:
-          "Srinithin Somasundaram Keynote, Srinithin AI Address, Yesp Founder Press, Enterprise AI Architecture, Practical AI Systems",
-      },
-      { name: "geo.region", content: "IN-KA;IN-TN" },
-      { name: "geo.placename", content: "Bengaluru, Coimbatore, Erode, India" },
-      { name: "geo.position", content: "12.9716;77.5946" },
-      { name: "ICBM", content: "12.9716, 77.5946" },
-      { property: "og:title", content: "Srinithin Somasundaram Keynote on Practical AI Architecture" },
-      {
-        property: "og:description",
-        content: "Executive address by Srinithin Somasundaram, Founder & CEO of Yesp Corporation.",
-      },
-      { property: "og:image", content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg" },
-      { property: "og:type", content: "article" },
-      { name: "twitter:title", content: "PR: Srinithin Somasundaram Keynote on Practical AI" },
-      {
-        name: "twitter:description",
-        content: "Official keynote summary from Srinithin Somasundaram, Founder & CEO of Yesp Corporation.",
-      },
-      { name: "twitter:image", content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg" },
-    ],
-    links: [{ rel: "canonical", href: "/press/srinithin-somasundaram-keynote-future-of-ai" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "NewsArticle",
-              "@id": "https://yespstudio.com/press/srinithin-somasundaram-keynote-future-of-ai#article",
-              headline: "Srinithin Somasundaram Outlines the Future of Practical AI and Custom Enterprise Software Architecture",
-              description: "Founder & CEO Srinithin Somasundaram delivers executive address detailing the deployment roadmap for enterprise AI automation.",
-              datePublished: "2026-08-10T09:00:00+05:30",
-              dateModified: "2026-08-10T09:00:00+05:30",
-              author: {
-                "@type": "Person",
-                name: "Srinithin Somasundaram",
-                jobTitle: "Founder & CEO",
-                worksFor: { "@type": "Corporation", name: "Yesp Corporation" },
-                url: "https://yespstudio.com/founder",
-                sameAs: [
-                  "https://www.linkedin.com/in/srinithinsomasundaram/",
-                  "https://www.instagram.com/srinithin.somasundaram/",
-                ],
-              },
-              publisher: {
-                "@type": "Corporation",
-                name: "Yesp Corporation",
-                url: "https://yespstudio.com",
-                logo: "https://yespstudio.com/assets/yesp-footer-logo.png",
-                slogan: "Make Better Happen.",
-              },
-              image: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg",
-              mainEntityOfPage: "https://yespstudio.com/press/srinithin-somasundaram-keynote-future-of-ai",
-            },
-          ],
-        }),
-      },
-    ],
-  }),
-  component: PressArticle4,
-});
-
-function PressArticle4() {
+export default function PressArticle4() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />

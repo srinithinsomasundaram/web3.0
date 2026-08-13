@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import founderImage from "@/assets/founder-srinithin-somasundaram.jpg";
 import logo from "@/assets/yesp-footer-logo.png";
 import { SiteHeader } from "@/components/site/SiteHeader";
@@ -17,82 +17,7 @@ import {
   ChevronLeft,
 } from "lucide-react";
 
-export const Route = createFileRoute("/articles/eroded-coimbatore-bengaluru-tech-lineage")({
-  head: () => ({
-    meta: [
-      { title: "The Erode – Coimbatore – Bengaluru Lineage | Srinithin Somasundaram" },
-      {
-        name: "description",
-        content:
-          "Executive Article by Srinithin Somasundaram: How Erode discipline, Coimbatore industrial engineering precision, and Bengaluru tech scale global enterprise software.",
-      },
-      {
-        name: "keywords",
-        content:
-          "Erode Coimbatore Bengaluru Technology, Srinithin Somasundaram, Yesp Corporation Roots, Indian Engineering Precision, Global Software Architecture",
-      },
-      { name: "geo.region", content: "IN-KA;IN-TN" },
-      { name: "geo.placename", content: "Bengaluru, Coimbatore, Erode, India" },
-      { name: "geo.position", content: "12.9716;77.5946" },
-      { name: "ICBM", content: "12.9716, 77.5946" },
-      { property: "og:title", content: "The Erode – Coimbatore – Bengaluru Lineage — Srinithin Somasundaram" },
-      {
-        property: "og:description",
-        content: "How regional grit, industrial engineering, and global technology scale enterprise software.",
-      },
-      { property: "og:image", content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg" },
-      { property: "og:type", content: "article" },
-      { name: "twitter:title", content: "Erode – Coimbatore – Bengaluru Tech Lineage" },
-      {
-        name: "twitter:description",
-        content: "Executive essay by Srinithin Somasundaram, Founder & CEO of Yesp Corporation.",
-      },
-      { name: "twitter:image", content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg" },
-    ],
-    links: [{ rel: "canonical", href: "/articles/eroded-coimbatore-bengaluru-tech-lineage" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "Article",
-              "@id": "https://yespstudio.com/articles/eroded-coimbatore-bengaluru-tech-lineage#article",
-              headline: "The Engineering Lineage: How Erode Grit, Coimbatore Precision, and Bengaluru Tech Scale Global Software",
-              description: "Srinithin Somasundaram shares the geographic and cultural lineage behind Yesp Corporation's enterprise engineering philosophy.",
-              datePublished: "2026-08-06T09:00:00+05:30",
-              dateModified: "2026-08-06T09:00:00+05:30",
-              author: {
-                "@type": "Person",
-                name: "Srinithin Somasundaram",
-                jobTitle: "Founder & CEO",
-                worksFor: { "@type": "Corporation", name: "Yesp Corporation" },
-                url: "https://yespstudio.com/founder",
-                sameAs: [
-                  "https://www.linkedin.com/in/srinithinsomasundaram/",
-                  "https://www.instagram.com/srinithin.somasundaram/",
-                ],
-              },
-              publisher: {
-                "@type": "Corporation",
-                name: "Yesp Corporation",
-                url: "https://yespstudio.com",
-                logo: "https://yespstudio.com/assets/yesp-footer-logo.png",
-                slogan: "Make Better Happen.",
-              },
-              image: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg",
-              mainEntityOfPage: "https://yespstudio.com/articles/eroded-coimbatore-bengaluru-tech-lineage",
-            },
-          ],
-        }),
-      },
-    ],
-  }),
-  component: Article3,
-});
-
-function Article3() {
+export default function Article3() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />

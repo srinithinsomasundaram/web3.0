@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import { createFileRoute, useNavigate, useSearch } from "@tanstack/react-router";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
-import { bookingUrl } from "@/lib/links";
 import {
   Search,
   X,
@@ -29,6 +28,14 @@ export interface SearchPageItem {
 
 const SEARCH_DATABASE: SearchPageItem[] = [
   // Core Pages
+  {
+    id: "yesp-core",
+    title: "Yesp Core — Built around your business.",
+    category: "Pages",
+    path: "/yesp-core",
+    description: "Flexible business technology service: understand → build → manage → improve.",
+    keywords: "yesp core erp custom software business core system inventory sales finance automation",
+  },
   {
     id: "home",
     title: "Homepage (Executive Portal)",
@@ -90,7 +97,7 @@ const SEARCH_DATABASE: SearchPageItem[] = [
     title: "Sitelinks Directory & HTML Sitemap",
     category: "Pages",
     path: "/sitelinks",
-    description: "Complete navigation directory indexing all 25 site pages, XML sitemap link, and technical crawler directives.",
+    description: "Complete navigation directory indexing all site pages, XML sitemap link, and technical crawler directives.",
     keywords: "sitelinks sitemap directory navigation index list all pages crawler technical SEO XML",
   },
   {
@@ -237,62 +244,9 @@ const SEARCH_DATABASE: SearchPageItem[] = [
   },
 ];
 
-export const Route = createFileRoute("/search")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    q: typeof search.q === "string" ? search.q : "",
-  }),
-  head: () => ({
-    meta: [
-      {
-        title: "Directory Search & Index | Yesp Corporation",
-      },
-      {
-        name: "description",
-        content:
-          "Search Yesp Corporation's official directory of enterprise software capabilities, applied AI systems, executive technology articles, press releases, and corporate resources.",
-      },
-      {
-        name: "keywords",
-        content:
-          "Yesp Search, Enterprise Search, Yesp Corporation Directory, Search Software, Search AI, Search Services, Erode Coimbatore Bengaluru Technology",
-      },
-      { name: "geo.region", content: "IN-KA;IN-TN" },
-      { name: "geo.placename", content: "Bengaluru, Coimbatore, Erode, India" },
-      { name: "geo.position", content: "12.9716;77.5946" },
-      { name: "ICBM", content: "12.9716, 77.5946" },
-      {
-        property: "og:title",
-        content: "Directory Search — Yesp Corporation",
-      },
-      {
-        property: "og:description",
-        content: "Search across all 25 active pages, services, articles, and press announcements in Accenture style.",
-      },
-      {
-        property: "og:image",
-        content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Directory Search — Yesp Corporation" },
-      {
-        name: "twitter:description",
-        content: "Search official pages, capabilities, and executive insights.",
-      },
-      {
-        name: "twitter:image",
-        content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg",
-      },
-    ],
-    links: [{ rel: "canonical", href: "/search" }],
-  }),
-  component: SearchPage,
-});
-
-function SearchPage() {
-  const navigate = useNavigate();
-  const searchParams = Route.useSearch();
-  const initialQuery = searchParams.q || "";
+export default function SearchPage() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialQuery = searchParams.get("q") || "";
 
   const [query, setQuery] = useState(initialQuery);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
@@ -321,11 +275,11 @@ function SearchPage() {
 
   const handleQueryChange = (val: string) => {
     setQuery(val);
-    navigate({
-      to: "/search",
-      search: { q: val },
-      replace: true,
-    });
+    if (val) {
+      setSearchParams({ q: val }, { replace: true });
+    } else {
+      setSearchParams({}, { replace: true });
+    }
   };
 
   const getCategoryIcon = (category: string) => {
@@ -347,7 +301,7 @@ function SearchPage() {
       <SiteHeader />
 
       <main className="overflow-x-hidden">
-        {/* Accenture Style Clean Hero & Search Control */}
+        {/* Clean Hero & Search Control */}
         <section className="border-b border-border/60 bg-gradient-to-b from-background via-card/50 to-background py-14 md:py-20">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 space-y-8">
             <div className="space-y-3">
@@ -388,7 +342,7 @@ function SearchPage() {
               </div>
             </div>
 
-            {/* Minimal Accenture Category Filter Bar */}
+            {/* Category Filter Bar */}
             <div className="flex items-center gap-2 overflow-x-auto pt-2 pb-1 scrollbar-none border-t border-border/40">
               <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground mr-2 shrink-0 flex items-center gap-1">
                 <SlidersHorizontal className="h-3.5 w-3.5 text-primary" /> Filter:
@@ -417,9 +371,9 @@ function SearchPage() {
           </div>
         </section>
 
-        {/* Accenture Style Clean Directory List Results */}
+        {/* Directory List Results */}
         <section className="mx-auto max-w-6xl px-4 sm:px-6 py-12 md:py-16 space-y-8">
-          {/* Status Counter Bar - Accenture Clean Minimalist */}
+          {/* Status Counter Bar */}
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border/80 pb-4 text-xs font-medium text-muted-foreground">
             <div className="flex items-center gap-2">
               <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse" />
@@ -435,14 +389,12 @@ function SearchPage() {
 
             <div className="flex items-center gap-4 text-xs">
               <span className="flex items-center gap-1.5 text-foreground font-semibold">
-                <Globe className="h-3.5 w-3.5 text-primary" /> 25 Active Pages Indexed
+                <Globe className="h-3.5 w-3.5 text-primary" /> Active Pages Indexed
               </span>
-              <span>·</span>
-              <span className="text-muted-foreground">Accenture Design Standard</span>
             </div>
           </div>
 
-          {/* Directory Cards Grid - Clean Accenture Left-Accent Style */}
+          {/* Directory Cards Grid */}
           <div className="grid gap-4 md:grid-cols-2">
             {filteredItems.length > 0 ? (
               filteredItems.map((item) => {
@@ -476,7 +428,7 @@ function SearchPage() {
                       </p>
                     </div>
 
-                    {/* Accenture Slide Arrow CTA */}
+                    {/* Arrow CTA */}
                     <div className="pt-2 flex items-center justify-between border-t border-border/40 text-xs font-bold text-primary">
                       <span>Explore Capability</span>
                       <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1.5" />
@@ -489,7 +441,7 @@ function SearchPage() {
                 <Sparkles className="h-8 w-8 text-primary mx-auto opacity-70" />
                 <h3 className="text-lg font-bold text-foreground">No directory results found for "{query}"</h3>
                 <p className="text-xs text-muted-foreground max-w-sm mx-auto">
-                  Try searching for keywords like "AI", "Digital", "Press", "Founder", "Tech", or "About".
+                  Try searching for keywords like "Yesp Core", "AI", "Digital", "Press", "Founder", "Tech", or "About".
                 </p>
               </div>
             )}

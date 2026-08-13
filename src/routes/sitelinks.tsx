@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { bookingUrl } from "@/lib/links";
@@ -15,89 +15,6 @@ import {
   ShieldCheck,
   ChevronRight,
 } from "lucide-react";
-
-export const Route = createFileRoute("/sitelinks")({
-  head: () => ({
-    meta: [
-      {
-        title:
-          "Sitelinks Directory & HTML Sitemap | Yesp Corporation Global Team",
-      },
-      {
-        name: "description",
-        content:
-          "Official Sitelinks Directory and HTML Sitemap for Yesp Corporation Global Team. Access all core pages, service capabilities, executive articles, press releases, and corporate resources.",
-      },
-      {
-        name: "keywords",
-        content:
-          "Yesp Sitelinks, HTML Sitemap, Yesp Corporation Directory, Enterprise Navigation, Yesp Pages Index, Erode Coimbatore Bengaluru Technology",
-      },
-      { name: "geo.region", content: "IN-KA;IN-TN" },
-      { name: "geo.placename", content: "Bengaluru, Coimbatore, Erode, India" },
-      { name: "geo.position", content: "12.9716;77.5946" },
-      { name: "ICBM", content: "12.9716, 77.5946" },
-      {
-        property: "og:title",
-        content: "Sitelinks Directory & Sitemap — Yesp Corporation",
-      },
-      {
-        property: "og:description",
-        content:
-          "Complete index of core pages, service capabilities, executive technology articles, and official press releases.",
-      },
-      {
-        property: "og:image",
-        content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg",
-      },
-      { property: "og:type", content: "website" },
-      {
-        name: "twitter:card",
-        content: "summary_large_image",
-      },
-      {
-        name: "twitter:title",
-        content: "Sitelinks Directory — Yesp Corporation",
-      },
-      {
-        name: "twitter:description",
-        content:
-          "Official navigation directory for Yesp Corporation Global Team.",
-      },
-      {
-        name: "twitter:image",
-        content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg",
-      },
-    ],
-    links: [{ rel: "canonical", href: "/sitelinks" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "ItemPage",
-              "@id": "https://yespstudio.com/sitelinks#webpage",
-              url: "https://yespstudio.com/sitelinks",
-              name: "Sitelinks Directory & HTML Sitemap | Yesp Corporation",
-              description:
-                "Official navigation directory and site map for Yesp Corporation Global Team.",
-              publisher: {
-                "@type": "Corporation",
-                name: "Yesp Corporation Global Team",
-                slogan: "Make Better Happen.",
-                url: "https://yespstudio.com",
-                logo: "https://yespstudio.com/assets/yesp-footer-logo.png",
-              },
-            },
-          ],
-        }),
-      },
-    ],
-  }),
-  component: SitelinksPage,
-});
 
 const siteCategories = [
   {
@@ -158,7 +75,7 @@ const siteCategories = [
   },
 ];
 
-function SitelinksPage() {
+export default function SitelinksPage() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       <SiteHeader />

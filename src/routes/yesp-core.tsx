@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { useState, type FormEvent } from "react";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
@@ -31,58 +31,6 @@ import {
   Send,
   X,
 } from "lucide-react";
-
-export const Route = createFileRoute("/yesp-core")({
-  head: () => ({
-    meta: [
-      { title: "Yesp Core — Built around your business." },
-      {
-        name: "description",
-        content:
-          "Yesp Core is a flexible business technology service. Understand → Build → Manage → Improve. We build custom systems around your actual business requirements.",
-      },
-      {
-        name: "keywords",
-        content:
-          "Yesp Core, Enterprise System, Custom ERP, Custom Software, Business Assessment, Workflow Automation, Inventory Control, Sales System, Operations Software",
-      },
-      { property: "og:title", content: "Yesp Core — Built around your business." },
-      {
-        property: "og:description",
-        content:
-          "Your business. Built into one digital core. Start small with an MVP, scale as you grow.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Yesp Core — Built around your business." },
-      {
-        name: "twitter:description",
-        content:
-          "Custom digital business core tailored to your exact workflows and processes.",
-      },
-    ],
-    links: [{ rel: "canonical", href: "/yesp-core" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Service",
-          name: "Yesp Core",
-          serviceType: "Enterprise Software & Business Core System Development",
-          provider: {
-            "@type": "Corporation",
-            name: "Yesp Corporation",
-            url: "https://yespstudio.com",
-          },
-          description:
-            "Flexible business technology service where custom digital systems are built around your actual business requirements.",
-        }),
-      },
-    ],
-  }),
-  component: YespCorePage,
-});
 
 const capabilities = [
   { name: "Sales", icon: ShoppingCart, description: "Lead tracking, pipeline & order workflows" },
@@ -161,7 +109,7 @@ const whyPillars = [
   },
 ];
 
-function YespCorePage() {
+export default function YespCorePage() {
   const [assessmentModalOpen, setAssessmentModalOpen] = useState(false);
   const [selectedFocus, setSelectedFocus] = useState<string>("Inventory Control");
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");

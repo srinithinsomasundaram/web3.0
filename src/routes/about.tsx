@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import logo from "@/assets/yesp-footer-logo.png";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
@@ -17,56 +17,6 @@ import {
   User,
   Newspaper,
 } from "lucide-react";
-
-export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About Yesp Corporation — The Story, Vision & Slogan | Make Better Happen." },
-      {
-        name: "description",
-        content:
-          "Discover the story behind Yesp Corporation: our slogan 'Make Better Happen.', our engineering lineage across Erode, Coimbatore, and Bengaluru, and our mission to build practical enterprise software & AI for global clients.",
-      },
-      { name: "keywords", content: "Yesp Corporation, About Yesp, Make Better Happen, Erode, Coimbatore, Bengaluru, Global Enterprise Technology, Enterprise Software Story" },
-      { name: "geo.region", content: "IN-KA;IN-TN" },
-      { name: "geo.placename", content: "Bengaluru, Coimbatore, Erode, India" },
-      { name: "geo.position", content: "12.9716;77.5946" },
-      { name: "ICBM", content: "12.9716, 77.5946" },
-      { property: "og:title", content: "About Yesp Corporation — The Story & Slogan" },
-      {
-        property: "og:description",
-        content:
-          "Enterprise Software · AI · Automation · Growth. Erode – Coimbatore – Bengaluru. Built for global.",
-      },
-      { property: "og:image", content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "About Yesp Corporation — Make Better Happen." },
-      { name: "twitter:description", content: "Learn about the logo, philosophy, and engineering story of Yesp Corporation." },
-      { name: "twitter:image", content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg" },
-    ],
-    links: [{ rel: "canonical", href: "/about" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "AboutPage",
-          mainEntity: {
-            "@type": "Corporation",
-            name: "Yesp Corporation",
-            slogan: "Make Better Happen.",
-            description:
-              "Global enterprise technology company rooted in Erode, built in Coimbatore, and operating from Bengaluru, India.",
-            email: "hello@yespstudio.com",
-            url: "https://yespstudio.com",
-          },
-        }),
-      },
-    ],
-  }),
-  component: AboutBrandPage,
-});
 
 const capabilities = [
   {
@@ -134,7 +84,7 @@ const beliefs = [
   },
 ];
 
-function AboutBrandPage() {
+export default function AboutBrandPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />

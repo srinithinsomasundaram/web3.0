@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import logo from "@/assets/yesp-footer-logo.png";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
@@ -13,69 +13,6 @@ import {
   Globe,
   Mail,
 } from "lucide-react";
-
-export const Route = createFileRoute("/press/")({
-  head: () => ({
-    meta: [
-      { title: "Press Center & Newsroom | Yesp Corporation India" },
-      {
-        name: "description",
-        content:
-          "Official Press Center & Newsroom for Yesp Corporation. Corporate announcements, press releases, media resources, and executive announcements for global enterprise clients.",
-      },
-      {
-        name: "keywords",
-        content:
-          "Yesp Corporation Press, Yesp Newsroom, Yesp Corp India Press Releases, Enterprise Software Announcements, AI Automation News",
-      },
-      { property: "og:title", content: "Press Center | Yesp Corporation India" },
-      {
-        property: "og:description",
-        content:
-          "Official press releases and corporate announcements for Yesp Corporation India.",
-      },
-      { property: "og:image", content: "https://yespstudio.com/assets/yesp-footer-logo.png" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:title", content: "Press Center | Yesp Corporation" },
-      {
-        name: "twitter:description",
-        content: "Official press announcements by Yesp Corporation India.",
-      },
-      { name: "twitter:image", content: "https://yespstudio.com/assets/yesp-footer-logo.png" },
-    ],
-    links: [{ rel: "canonical", href: "/press" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "CollectionPage",
-              "@id": "https://yespstudio.com/press#webpage",
-              url: "https://yespstudio.com/press",
-              name: "Press Center & Newsroom | Yesp Corporation",
-              description: "Official press release newsroom for Yesp Corporation India.",
-            },
-            {
-              "@type": "Corporation",
-              name: "Yesp Corporation",
-              url: "https://yespstudio.com",
-              founder: {
-                "@type": "Person",
-                name: "Srinithin Somasundaram",
-                jobTitle: "Founder & CEO",
-                url: "https://yespstudio.com/founder",
-              },
-              slogan: "Make Better Happen.",
-            },
-          ],
-        }),
-      },
-    ],
-  }),
-  component: PressIndexPage,
-});
 
 const pressReleases = [
   {
@@ -115,7 +52,7 @@ const pressReleases = [
   },
 ];
 
-function PressIndexPage() {
+export default function PressIndexPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />

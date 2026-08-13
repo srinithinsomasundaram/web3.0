@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import logo from "@/assets/yesp-footer-logo.png";
 import founderImage from "@/assets/founder-srinithin-somasundaram.jpg";
 import { SiteHeader } from "@/components/site/SiteHeader";
@@ -17,92 +17,7 @@ import {
   ChevronLeft,
 } from "lucide-react";
 
-export const Route = createFileRoute("/press/make-better-happen-initiative")({
-  head: () => ({
-    meta: [
-      { title: "Press Release: Yesp Corporation India Sets 'Make Better Happen' Standard | Srinithin Somasundaram" },
-      {
-        name: "description",
-        content:
-          "Official Press Release published by Yesp Corporation India Team: Introducing the 'Make Better Happen.' framework for enterprise software, AI integrations, and zero-complexity automation across Erode, Coimbatore, and Bengaluru.",
-      },
-      {
-        name: "keywords",
-        content:
-          "Make Better Happen, Yesp Corporation India Press Release, Yesp Corp India Team, Srinithin Somasundaram, Enterprise Software Standard, System Integration Excellence",
-      },
-      { name: "geo.region", content: "IN-KA;IN-TN" },
-      { name: "geo.placename", content: "Bengaluru, Coimbatore, Erode, India" },
-      { name: "geo.position", content: "12.9716;77.5946" },
-      { name: "ICBM", content: "12.9716, 77.5946" },
-      { property: "og:title", content: "Yesp Corporation India Sets 'Make Better Happen' Standard" },
-      {
-        property: "og:description",
-        content: "Published by Yesp Corporation India Team & Founder Srinithin Somasundaram.",
-      },
-      { property: "og:image", content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg" },
-      { property: "og:type", content: "article" },
-      { name: "twitter:title", content: "PR: Yesp Corporation India 'Make Better Happen' Initiative" },
-      {
-        name: "twitter:description",
-        content: "Published by Yesp Corporation India Team & Srinithin Somasundaram.",
-      },
-      { name: "twitter:image", content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg" },
-    ],
-    links: [{ rel: "canonical", href: "/press/make-better-happen-initiative" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "NewsArticle",
-              "@id": "https://yespstudio.com/press/make-better-happen-initiative#article",
-              headline: "Yesp Corporation Introduces 'Make Better Happen' Operational Standard for Enterprise System Integrations",
-              description: "Published by Yesp Corporation India Team: Yesp Corporation formalizes its foundational engineering philosophy to eliminate software complexity.",
-              datePublished: "2026-08-08T09:00:00+05:30",
-              dateModified: "2026-08-08T09:00:00+05:30",
-              locationCreated: {
-                "@type": "Place",
-                name: "Bengaluru, Karnataka, India",
-                address: {
-                  "@type": "PostalAddress",
-                  addressLocality: "Bengaluru",
-                  addressRegion: "Karnataka",
-                  addressCountry: "IN",
-                },
-              },
-              author: {
-                "@type": "Person",
-                name: "Srinithin Somasundaram",
-                jobTitle: "Founder & CEO",
-                worksFor: { "@type": "Corporation", name: "Yesp Corporation India" },
-                url: "https://yespstudio.com/founder",
-                sameAs: [
-                  "https://www.linkedin.com/in/srinithinsomasundaram/",
-                  "https://www.instagram.com/srinithin.somasundaram/",
-                ],
-              },
-              publisher: {
-                "@type": "Corporation",
-                name: "Yesp Corporation India Team",
-                url: "https://yespstudio.com",
-                logo: "https://yespstudio.com/assets/yesp-footer-logo.png",
-                slogan: "Make Better Happen.",
-              },
-              image: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg",
-              mainEntityOfPage: "https://yespstudio.com/press/make-better-happen-initiative",
-            },
-          ],
-        }),
-      },
-    ],
-  }),
-  component: PressArticle3,
-});
-
-function PressArticle3() {
+export default function PressArticle3() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />

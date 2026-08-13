@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import logo from "@/assets/yesp-footer-logo.png";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
@@ -12,72 +12,6 @@ import {
   Building2,
   Mail,
 } from "lucide-react";
-
-export const Route = createFileRoute("/articles/")({
-  head: () => ({
-    meta: [
-      { title: "Executive Articles & Technology Insights | Published by Yesp Corp Global Team" },
-      {
-        name: "description",
-        content:
-          "Published by Yesp Corporation Global Team: Official Executive Articles & Technology Insights by Founder & CEO Srinithin Somasundaram across Erode, Coimbatore, and Bengaluru. Insights on enterprise software, AI agents, automation, and system integration.",
-      },
-      {
-        name: "keywords",
-        content:
-          "Yesp Corp Global Team Articles, Srinithin Somasundaram Articles, Erode Coimbatore Bengaluru Technology, Enterprise Software Insights, AI Automation Articles",
-      },
-      { name: "geo.region", content: "IN-KA;IN-TN" },
-      { name: "geo.placename", content: "Bengaluru, Coimbatore, Erode, India" },
-      { name: "geo.position", content: "12.9716;77.5946" },
-      { name: "ICBM", content: "12.9716, 77.5946" },
-      { property: "og:title", content: "Executive Articles & Insights — Published by Yesp Corp Global Team" },
-      {
-        property: "og:description",
-        content:
-          "Published by Yesp Corporation Global Team. Executive technology articles by Founder & CEO Srinithin Somasundaram.",
-      },
-      { property: "og:image", content: "https://yespstudio.com/assets/yesp-footer-logo.png" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:title", content: "Executive Articles | Yesp Corp Global Team" },
-      {
-        name: "twitter:description",
-        content: "Published by Yesp Corporation Global Team & Srinithin Somasundaram.",
-      },
-      { name: "twitter:image", content: "https://yespstudio.com/assets/yesp-footer-logo.png" },
-    ],
-    links: [{ rel: "canonical", href: "/articles" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "CollectionPage",
-              "@id": "https://yespstudio.com/articles#webpage",
-              url: "https://yespstudio.com/articles",
-              name: "Executive Articles & Insights | Published by Yesp Corp Global Team",
-              description: "Official technology articles published by Yesp Corporation Global Team and Founder Srinithin Somasundaram.",
-            },
-            {
-              "@type": "Corporation",
-              name: "Yesp Corporation Global Team",
-              url: "https://yespstudio.com",
-              founder: {
-                "@type": "Person",
-                name: "Srinithin Somasundaram",
-                jobTitle: "Founder & CEO",
-                url: "https://yespstudio.com/founder",
-              },
-            },
-          ],
-        }),
-      },
-    ],
-  }),
-  component: ArticlesIndexPage,
-});
 
 const articlesList = [
   {
@@ -130,7 +64,7 @@ const articlesList = [
   },
 ];
 
-function ArticlesIndexPage() {
+export default function ArticlesIndexPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />

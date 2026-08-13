@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { useNavigate } from "@tanstack/react-router";
+import { useNavigate } from "react-router-dom";
 import { Search, X, ChevronRight, Sparkles } from "lucide-react";
 
 export interface SearchItem {
@@ -13,6 +13,14 @@ export interface SearchItem {
 
 const SEARCH_INDEX: SearchItem[] = [
   // Core Pages
+  {
+    id: "yesp-core",
+    title: "Yesp Core — Built around your business.",
+    category: "Pages",
+    path: "/yesp-core",
+    description: "Flexible business technology service: understand → build → manage → improve.",
+    keywords: "yesp core erp custom software business core system inventory sales finance automation",
+  },
   {
     id: "home",
     title: "Homepage",
@@ -74,7 +82,7 @@ const SEARCH_INDEX: SearchItem[] = [
     title: "Sitelinks Directory & Sitemap",
     category: "Pages",
     path: "/sitelinks",
-    description: "Complete sitemap directory indexing all 24 site pages.",
+    description: "Complete sitemap directory indexing all site pages.",
     keywords: "sitelinks sitemap directory navigation index list all pages crawler",
   },
   {
@@ -259,17 +267,14 @@ export function SiteInlineSearch() {
   const handleSelect = (path: string) => {
     setIsOpen(false);
     setQuery("");
-    navigate({ to: path });
+    navigate(path);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
       e.preventDefault();
       setIsOpen(false);
-      navigate({
-        to: "/search",
-        search: { q: query },
-      });
+      navigate("/search?q=" + encodeURIComponent(query));
       return;
     }
 
@@ -311,7 +316,7 @@ export function SiteInlineSearch() {
           onFocus={() => setIsOpen(true)}
           onClick={() => {
             if (!query.trim()) {
-              navigate({ to: "/search", search: { q: "" } });
+              navigate("/search");
             }
           }}
           onChange={(e) => {
@@ -399,7 +404,7 @@ export function SiteInlineSearch() {
                 type="button"
                 onClick={() => {
                   setIsOpen(false);
-                  navigate({ to: "/search", search: { q: query } });
+                  navigate("/search?q=" + encodeURIComponent(query));
                 }}
                 className="w-full mt-2 flex items-center justify-between rounded-xl bg-brand/10 px-3 py-2 text-xs font-bold text-primary hover:bg-brand/20 transition-colors border border-brand/20"
               >
@@ -415,11 +420,11 @@ export function SiteInlineSearch() {
                 type="button"
                 onClick={() => {
                   setIsOpen(false);
-                  navigate({ to: "/search", search: { q: query } });
+                  navigate("/search?q=" + encodeURIComponent(query));
                 }}
                 className="inline-flex items-center gap-1.5 rounded-full bg-brand px-4 py-1.5 text-xs font-bold text-primary-foreground hover:opacity-90 transition-opacity"
               >
-                Search all 25 pages <ChevronRight className="h-3 w-3" />
+                Search all pages <ChevronRight className="h-3 w-3" />
               </button>
             </div>
           )}

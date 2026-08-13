@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import founderImage from "@/assets/founder-srinithin-somasundaram.jpg";
 import logo from "@/assets/yesp-footer-logo.png";
 import { SiteHeader } from "@/components/site/SiteHeader";
@@ -20,115 +20,7 @@ import {
   Radio,
 } from "lucide-react";
 
-export const Route = createFileRoute(
-  "/press/yesp-corp-global-expansion-and-ai-infrastructure"
-)({
-  head: () => ({
-    meta: [
-      {
-        title:
-          "Yesp Corp Global Announces Expansion of Enterprise AI & Custom Software Infrastructure",
-      },
-      {
-        name: "description",
-        content:
-          "Official Press Release: Yesp Corporation Global Team expands custom software backbones, practical AI agent infrastructure, and zero-latency integrations across international enterprise markets.",
-      },
-      {
-        name: "keywords",
-        content:
-          "Yesp Corp Global Expansion, Press Release Yesp Corporation, Enterprise AI Infrastructure, Srinithin Somasundaram Announcement, Erode Coimbatore Bengaluru Technology Press",
-      },
-      { name: "geo.region", content: "IN-KA;IN-TN" },
-      { name: "geo.placename", content: "Bengaluru, Coimbatore, Erode, India" },
-      { name: "geo.position", content: "12.9716;77.5946" },
-      { name: "ICBM", content: "12.9716, 77.5946" },
-      {
-        property: "og:title",
-        content:
-          "Yesp Corp Global Announces Expansion of Enterprise AI & Custom Software Infrastructure",
-      },
-      {
-        property: "og:description",
-        content:
-          "Official Press Release by Yesp Corporation Global Team. Scaling enterprise software backbones and applied AI agents.",
-      },
-      {
-        property: "og:image",
-        content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg",
-      },
-      { property: "og:type", content: "article" },
-      {
-        name: "twitter:title",
-        content: "Yesp Corp Global: Enterprise AI & Software Infrastructure Expansion",
-      },
-      {
-        name: "twitter:description",
-        content: "Official Press Release by Yesp Corporation Global Team.",
-      },
-      {
-        name: "twitter:image",
-        content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg",
-      },
-    ],
-    links: [
-      {
-        rel: "canonical",
-        href: "/press/yesp-corp-global-expansion-and-ai-infrastructure",
-      },
-    ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "NewsArticle",
-              "@id":
-                "https://yespstudio.com/press/yesp-corp-global-expansion-and-ai-infrastructure#article",
-              headline:
-                "Yesp Corporation Global Team Announces Expansion of Autonomous AI & Enterprise Software Operations",
-              description:
-                "Official corporate announcement detailing Yesp Corporation's expanded engineering infrastructure, 100% remote delivery model, and practical AI agent pipelines for international enterprise clients.",
-              datePublished: "2026-08-10T09:00:00+05:30",
-              dateModified: "2026-08-10T09:00:00+05:30",
-              author: {
-                "@type": "Person",
-                name: "Srinithin Somasundaram",
-                jobTitle: "Founder & CEO",
-                worksFor: {
-                  "@type": "Corporation",
-                  name: "Yesp Corporation Global Team",
-                },
-                url: "https://yespstudio.com/founder",
-              },
-              publisher: {
-                "@type": "Corporation",
-                name: "Yesp Corporation Global Team",
-                slogan: "Make Better Happen.",
-                url: "https://yespstudio.com",
-                logo: "https://yespstudio.com/assets/yesp-footer-logo.png",
-              },
-              locationCreated: {
-                "@type": "Place",
-                name: "Bengaluru, Karnataka, India",
-                geo: {
-                  "@type": "GeoCoordinates",
-                  latitude: "12.9716",
-                  longitude: "77.5946",
-                },
-              },
-            },
-          ],
-        }),
-      },
-    ],
-  }),
-  component: YespCorpGlobalPressPage,
-});
-
-function YespCorpGlobalPressPage() {
+export default function YespCorpGlobalPressPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />

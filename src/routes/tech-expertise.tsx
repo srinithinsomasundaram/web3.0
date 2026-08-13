@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { bookingUrl } from "@/lib/links";
@@ -22,86 +22,6 @@ import {
   Boxes,
   Lock,
 } from "lucide-react";
-
-export const Route = createFileRoute("/tech-expertise")({
-  head: () => ({
-    meta: [
-      {
-        title:
-          "Technical Expertise & Core Technology Stack | Yesp Corporation",
-      },
-      {
-        name: "description",
-        content:
-          "Explore Yesp Corporation's core technical expertise across Cloud Architecture, Autonomous AI Agents, Microservices, Zero-Latency ERP Integration, and High-Performance Frontend Systems.",
-      },
-      {
-        name: "keywords",
-        content:
-          "Yesp Tech Expertise, Technology Stack, Enterprise Software Stack, Applied AI Agents, Cloud Infrastructure, Node.js, TypeScript, Python, Go, PostgreSQL, React, AWS, Docker, Erode Coimbatore Bengaluru Technology",
-      },
-      { name: "geo.region", content: "IN-KA;IN-TN" },
-      { name: "geo.placename", content: "Bengaluru, Coimbatore, Erode, India" },
-      { name: "geo.position", content: "12.9716;77.5946" },
-      { name: "ICBM", content: "12.9716, 77.5946" },
-      {
-        property: "og:title",
-        content: "Technical Expertise & Architecture Stack — Yesp Corporation",
-      },
-      {
-        property: "og:description",
-        content:
-          "Deep dive into our engineering capabilities: Autonomous AI, Enterprise Backends, High-Scale Cloud Infra, and Real-Time Systems.",
-      },
-      {
-        property: "og:image",
-        content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      {
-        name: "twitter:title",
-        content: "Tech Expertise & Stack — Yesp Corporation",
-      },
-      {
-        name: "twitter:description",
-        content:
-          "Zero-latency software backbones, applied AI systems, and modern cloud platforms.",
-      },
-      {
-        name: "twitter:image",
-        content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg",
-      },
-    ],
-    links: [{ rel: "canonical", href: "/tech-expertise" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "TechArticle",
-              "@id": "https://yespstudio.com/tech-expertise#article",
-              url: "https://yespstudio.com/tech-expertise",
-              name: "Technical Expertise & Technology Stack Architecture",
-              description:
-                "Comprehensive specification of Yesp Corporation's core technical expertise, software engineering patterns, and autonomous AI capabilities.",
-              publisher: {
-                "@type": "Corporation",
-                name: "Yesp Corporation",
-                slogan: "Make Better Happen.",
-                url: "https://yespstudio.com",
-                logo: "https://yespstudio.com/assets/yesp-footer-logo.png",
-              },
-            },
-          ],
-        }),
-      },
-    ],
-  }),
-  component: TechExpertisePage,
-});
 
 interface TechPillar {
   id: string;
@@ -277,7 +197,7 @@ const BENCHMARKS = [
   },
 ];
 
-function TechExpertisePage() {
+export default function TechExpertisePage() {
   const [selectedFilter, setSelectedFilter] = useState<string>("All");
 
   const categories = [

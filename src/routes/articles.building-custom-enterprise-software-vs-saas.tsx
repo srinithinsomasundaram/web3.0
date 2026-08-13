@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import founderImage from "@/assets/founder-srinithin-somasundaram.jpg";
 import logo from "@/assets/yesp-footer-logo.png";
 import { SiteHeader } from "@/components/site/SiteHeader";
@@ -18,93 +18,7 @@ import {
   ChevronLeft,
 } from "lucide-react";
 
-export const Route = createFileRoute("/articles/building-custom-enterprise-software-vs-saas")({
-  head: () => ({
-    meta: [
-      { title: "Custom Enterprise Software vs SaaS Bloat | Published by Yesp Corp India Team" },
-      {
-        name: "description",
-        content:
-          "Published by Yesp Corporation India Team & Founder Srinithin Somasundaram: Why scaling enterprise businesses across Erode, Coimbatore, and Bengaluru are moving away from fragmented SaaS subscriptions towards custom software backbones.",
-      },
-      {
-        name: "keywords",
-        content:
-          "Custom Enterprise Software, SaaS Bloat, Yesp Corp India Team, Srinithin Somasundaram, Erode Coimbatore Bengaluru Software, Enterprise Architecture India",
-      },
-      { name: "geo.region", content: "IN-KA;IN-TN" },
-      { name: "geo.placename", content: "Bengaluru, Coimbatore, Erode, India" },
-      { name: "geo.position", content: "12.9716;77.5946" },
-      { name: "ICBM", content: "12.9716, 77.5946" },
-      { property: "og:title", content: "Custom Enterprise Software vs SaaS Bloat — Published by Yesp Corp India Team" },
-      {
-        property: "og:description",
-        content:
-          "Published by Yesp Corporation India Team & Founder Srinithin Somasundaram. Why scaling enterprises are replacing SaaS tools with custom software.",
-      },
-      { property: "og:image", content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg" },
-      { property: "og:type", content: "article" },
-      { name: "twitter:title", content: "Custom Software vs SaaS Bloat — Yesp Corp India Team" },
-      {
-        name: "twitter:description",
-        content: "Published by Yesp Corporation India Team & Srinithin Somasundaram.",
-      },
-      { name: "twitter:image", content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg" },
-    ],
-    links: [{ rel: "canonical", href: "/articles/building-custom-enterprise-software-vs-saas" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "TechArticle",
-              "@id": "https://yespstudio.com/articles/building-custom-enterprise-software-vs-saas#article",
-              headline: "Why Scaling Enterprises Are Moving from Fragmented SaaS to Custom Software Backbones",
-              description: "Published by Yesp Corporation India Team: An analysis of SaaS fragmentation and how bespoke software architecture provides long-term speed and scalability.",
-              datePublished: "2026-08-02T09:00:00+05:30",
-              dateModified: "2026-08-02T09:00:00+05:30",
-              locationCreated: {
-                "@type": "Place",
-                name: "Bengaluru, Karnataka, India",
-                address: {
-                  "@type": "PostalAddress",
-                  addressLocality: "Bengaluru",
-                  addressRegion: "Karnataka",
-                  addressCountry: "IN",
-                },
-              },
-              author: {
-                "@type": "Person",
-                name: "Srinithin Somasundaram",
-                jobTitle: "Founder & CEO",
-                worksFor: { "@type": "Corporation", name: "Yesp Corporation India" },
-                url: "https://yespstudio.com/founder",
-                sameAs: [
-                  "https://www.linkedin.com/in/srinithinsomasundaram/",
-                  "https://www.instagram.com/srinithin.somasundaram/",
-                ],
-              },
-              publisher: {
-                "@type": "Corporation",
-                name: "Yesp Corporation India Team",
-                url: "https://yespstudio.com",
-                logo: "https://yespstudio.com/assets/yesp-footer-logo.png",
-                slogan: "Make Better Happen.",
-              },
-              image: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg",
-              mainEntityOfPage: "https://yespstudio.com/articles/building-custom-enterprise-software-vs-saas",
-            },
-          ],
-        }),
-      },
-    ],
-  }),
-  component: Article1,
-});
-
-function Article1() {
+export default function Article1() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />

@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import logo from "@/assets/yesp-footer-logo.png";
 import { bookingUrl } from "@/lib/links";
 import { MapPin, Mail, ArrowUpRight, Linkedin, Instagram } from "lucide-react";

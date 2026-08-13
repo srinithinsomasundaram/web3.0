@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import founderImage from "@/assets/founder-srinithin-somasundaram.jpg";
 import logo from "@/assets/yesp-footer-logo.png";
 import { SiteHeader } from "@/components/site/SiteHeader";
@@ -17,82 +17,7 @@ import {
   ChevronLeft,
 } from "lucide-react";
 
-export const Route = createFileRoute("/articles/eliminating-data-silos-with-zero-latency-integrations")({
-  head: () => ({
-    meta: [
-      { title: "Eliminating Data Silos with Zero-Latency Integrations | Srinithin Somasundaram" },
-      {
-        name: "description",
-        content:
-          "Executive Article by Srinithin Somasundaram: How automated cross-system pipelines and zero-latency ERP integrations eliminate business bottlenecks.",
-      },
-      {
-        name: "keywords",
-        content:
-          "System Integrations, Zero Latency ERP, Data Silos, Srinithin Somasundaram, Yesp Corporation Software Architecture",
-      },
-      { name: "geo.region", content: "IN-KA;IN-TN" },
-      { name: "geo.placename", content: "Bengaluru, Coimbatore, Erode, India" },
-      { name: "geo.position", content: "12.9716;77.5946" },
-      { name: "ICBM", content: "12.9716, 77.5946" },
-      { property: "og:title", content: "Eliminating Data Silos — Srinithin Somasundaram" },
-      {
-        property: "og:description",
-        content: "How zero-latency system integrations drive operational velocity for scaling enterprises.",
-      },
-      { property: "og:image", content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg" },
-      { property: "og:type", content: "article" },
-      { name: "twitter:title", content: "Eliminating Data Silos — Srinithin Somasundaram" },
-      {
-        name: "twitter:description",
-        content: "Executive insights by Srinithin Somasundaram, Founder & CEO of Yesp Corporation.",
-      },
-      { name: "twitter:image", content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg" },
-    ],
-    links: [{ rel: "canonical", href: "/articles/eliminating-data-silos-with-zero-latency-integrations" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "TechArticle",
-              "@id": "https://yespstudio.com/articles/eliminating-data-silos-with-zero-latency-integrations#article",
-              headline: "Eliminating Operational Bottlenecks: How Zero-Latency ERP & System Integrations Drive Business Velocity",
-              description: "A deep dive into system integration design, API pipelines, and eliminating manual data entry across enterprise software ecosystems.",
-              datePublished: "2026-08-07T09:00:00+05:30",
-              dateModified: "2026-08-07T09:00:00+05:30",
-              author: {
-                "@type": "Person",
-                name: "Srinithin Somasundaram",
-                jobTitle: "Founder & CEO",
-                worksFor: { "@type": "Corporation", name: "Yesp Corporation" },
-                url: "https://yespstudio.com/founder",
-                sameAs: [
-                  "https://www.linkedin.com/in/srinithinsomasundaram/",
-                  "https://www.instagram.com/srinithin.somasundaram/",
-                ],
-              },
-              publisher: {
-                "@type": "Corporation",
-                name: "Yesp Corporation",
-                url: "https://yespstudio.com",
-                logo: "https://yespstudio.com/assets/yesp-footer-logo.png",
-                slogan: "Make Better Happen.",
-              },
-              image: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg",
-              mainEntityOfPage: "https://yespstudio.com/articles/eliminating-data-silos-with-zero-latency-integrations",
-            },
-          ],
-        }),
-      },
-    ],
-  }),
-  component: Article4,
-});
-
-function Article4() {
+export default function Article4() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />

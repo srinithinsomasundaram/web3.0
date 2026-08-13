@@ -1,60 +1,11 @@
-import { createFileRoute } from "@tanstack/react-router";
+
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { caseStudies } from "@/lib/case-studies";
 import { bookingUrl } from "@/lib/links";
 import { Sparkles, ArrowRight, CheckCircle2, ShieldCheck, Zap } from "lucide-react";
 
-export const Route = createFileRoute("/case-studies")({
-  head: () => ({
-    meta: [
-      { title: "Selected Client Work & Case Studies | Yesp Corporation — Make Better Happen." },
-      {
-        name: "description",
-        content:
-          "Explore selected Yesp Corporation client work and case studies in enterprise software, AI agents, document automation, voice AI, and organic search systems.",
-      },
-      { name: "keywords", content: "Yesp Case Studies, Enterprise Software Projects, AI Agent Portfolio, Automation Case Studies, Voice AI Implementations" },
-      { name: "geo.region", content: "IN-KA;IN-TN" },
-      { name: "geo.placename", content: "Bengaluru, Coimbatore, Erode, India" },
-      { name: "geo.position", content: "12.9716;77.5946" },
-      { name: "ICBM", content: "12.9716, 77.5946" },
-      { property: "og:title", content: "Selected Client Work & Case Studies — Yesp Corporation" },
-      {
-        property: "og:description",
-        content:
-          "How Yesp Corporation builds custom software systems, applies practical AI, and automates operational workflows for enterprise clients.",
-      },
-      { property: "og:image", content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Yesp Client Work & Case Studies" },
-      { name: "twitter:description", content: "Real client outcomes in enterprise software, AI, and workflow automation by Yesp Corporation." },
-      { name: "twitter:image", content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg" },
-    ],
-    links: [{ rel: "canonical", href: "/case-studies" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "CollectionPage",
-          name: "Yesp Corporation Case Studies",
-          description: "Selected client case studies in enterprise software, AI agents, and intelligent automation.",
-          url: "https://yespstudio.com/case-studies",
-          publisher: {
-            "@type": "Corporation",
-            name: "Yesp Corporation",
-            slogan: "Make Better Happen.",
-          },
-        }),
-      },
-    ],
-  }),
-  component: CaseStudiesPage,
-});
-
-function CaseStudiesPage() {
+export default function CaseStudiesPage() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       <SiteHeader />

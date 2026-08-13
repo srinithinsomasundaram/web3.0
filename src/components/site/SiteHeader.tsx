@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link, NavLink } from "react-router-dom";
 import logo from "@/assets/yesp-footer-logo.png";
 import { bookingUrl } from "@/lib/links";
 import { Menu, X, ArrowRight, Sparkles } from "lucide-react";
@@ -26,23 +26,48 @@ export function SiteHeader() {
 
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-6 text-xs font-semibold text-muted-foreground lg:flex">
-          <Link to="/yesp-core" className="transition-colors hover:text-foreground text-primary font-bold" activeProps={{ className: "text-primary font-extrabold" }}>
+          <NavLink
+            to="/yesp-core"
+            className={({ isActive }) =>
+              `transition-colors font-bold ${isActive ? "text-primary font-extrabold" : "text-primary hover:text-foreground"}`
+            }
+          >
             Yesp Core
-          </Link>
+          </NavLink>
           <a href="/#solutions" className="transition-colors hover:text-foreground">Solutions</a>
           <a href="/#process" className="transition-colors hover:text-foreground">Process</a>
-          <Link to="/about" className="transition-colors hover:text-foreground" activeProps={{ className: "text-foreground font-bold" }}>
+          <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              `transition-colors hover:text-foreground ${isActive ? "text-foreground font-bold" : ""}`
+            }
+          >
             About
-          </Link>
-          <Link to="/case-studies" className="transition-colors hover:text-foreground" activeProps={{ className: "text-foreground font-bold" }}>
+          </NavLink>
+          <NavLink
+            to="/case-studies"
+            className={({ isActive }) =>
+              `transition-colors hover:text-foreground ${isActive ? "text-foreground font-bold" : ""}`
+            }
+          >
             Client Work
-          </Link>
-          <Link to="/careers" className="transition-colors hover:text-foreground" activeProps={{ className: "text-foreground font-bold" }}>
+          </NavLink>
+          <NavLink
+            to="/careers"
+            className={({ isActive }) =>
+              `transition-colors hover:text-foreground ${isActive ? "text-foreground font-bold" : ""}`
+            }
+          >
             Careers
-          </Link>
-          <Link to="/contact" className="transition-colors hover:text-foreground" activeProps={{ className: "text-foreground font-bold" }}>
+          </NavLink>
+          <NavLink
+            to="/contact"
+            className={({ isActive }) =>
+              `transition-colors hover:text-foreground ${isActive ? "text-foreground font-bold" : ""}`
+            }
+          >
             Contact
-          </Link>
+          </NavLink>
         </nav>
 
         {/* Inline Search, CTA Button & Mobile Toggle */}
@@ -80,6 +105,14 @@ export function SiteHeader() {
       {mobileMenuOpen && (
         <div className="border-b border-border/80 bg-background/95 backdrop-blur-lg md:hidden animate-in fade-in slide-in-from-top-2 duration-200">
           <nav className="mx-auto max-w-6xl px-6 py-6 flex flex-col gap-4 text-sm font-semibold text-foreground">
+            <Link
+              to="/yesp-core"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center justify-between border-b border-border/40 pb-3 text-primary font-bold hover:opacity-80"
+            >
+              <span>Yesp Core</span>
+              <ArrowRight className="h-4 w-4 opacity-50" />
+            </Link>
             <a
               href="/#solutions"
               onClick={() => setMobileMenuOpen(false)}

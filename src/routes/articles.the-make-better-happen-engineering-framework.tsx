@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import founderImage from "@/assets/founder-srinithin-somasundaram.jpg";
 import logo from "@/assets/yesp-footer-logo.png";
 import { SiteHeader } from "@/components/site/SiteHeader";
@@ -17,82 +17,7 @@ import {
   ChevronLeft,
 } from "lucide-react";
 
-export const Route = createFileRoute("/articles/the-make-better-happen-engineering-framework")({
-  head: () => ({
-    meta: [
-      { title: "The 'Make Better Happen' Engineering Framework | Srinithin Somasundaram" },
-      {
-        name: "description",
-        content:
-          "Executive Article by Srinithin Somasundaram: The foundational blueprint behind Yesp Corporation's enterprise software and AI engineering framework.",
-      },
-      {
-        name: "keywords",
-        content:
-          "Make Better Happen Framework, Srinithin Somasundaram, Yesp Corporation Slogan, Software Architecture Standard, Business Automation Blueprint",
-      },
-      { name: "geo.region", content: "IN-KA;IN-TN" },
-      { name: "geo.placename", content: "Bengaluru, Coimbatore, Erode, India" },
-      { name: "geo.position", content: "12.9716;77.5946" },
-      { name: "ICBM", content: "12.9716, 77.5946" },
-      { property: "og:title", content: "The 'Make Better Happen' Framework — Srinithin Somasundaram" },
-      {
-        property: "og:description",
-        content: "Designing enterprise software around actual business logic and operational velocity.",
-      },
-      { property: "og:image", content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg" },
-      { property: "og:type", content: "article" },
-      { name: "twitter:title", content: "The 'Make Better Happen' Framework" },
-      {
-        name: "twitter:description",
-        content: "Executive essay by Srinithin Somasundaram, Founder & CEO of Yesp Corporation.",
-      },
-      { name: "twitter:image", content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg" },
-    ],
-    links: [{ rel: "canonical", href: "/articles/the-make-better-happen-engineering-framework" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "TechArticle",
-              "@id": "https://yespstudio.com/articles/the-make-better-happen-engineering-framework#article",
-              headline: "The 'Make Better Happen' Blueprint: Designing Software Around Actual Business Operations",
-              description: "Srinithin Somasundaram outlines the engineering principles that guide software development, automation, and AI integrations at Yesp Corporation.",
-              datePublished: "2026-08-09T09:00:00+05:30",
-              dateModified: "2026-08-09T09:00:00+05:30",
-              author: {
-                "@type": "Person",
-                name: "Srinithin Somasundaram",
-                jobTitle: "Founder & CEO",
-                worksFor: { "@type": "Corporation", name: "Yesp Corporation" },
-                url: "https://yespstudio.com/founder",
-                sameAs: [
-                  "https://www.linkedin.com/in/srinithinsomasundaram/",
-                  "https://www.instagram.com/srinithin.somasundaram/",
-                ],
-              },
-              publisher: {
-                "@type": "Corporation",
-                name: "Yesp Corporation",
-                url: "https://yespstudio.com",
-                logo: "https://yespstudio.com/assets/yesp-footer-logo.png",
-                slogan: "Make Better Happen.",
-              },
-              image: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg",
-              mainEntityOfPage: "https://yespstudio.com/articles/the-make-better-happen-engineering-framework",
-            },
-          ],
-        }),
-      },
-    ],
-  }),
-  component: Article5,
-});
-
-function Article5() {
+export default function Article5() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />

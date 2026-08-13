@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import founderImage from "@/assets/founder-srinithin-somasundaram.jpg";
 import logo from "@/assets/yesp-footer-logo.png";
 import { SiteHeader } from "@/components/site/SiteHeader";
@@ -18,82 +18,7 @@ import {
   ChevronLeft,
 } from "lucide-react";
 
-export const Route = createFileRoute("/articles/practical-ai-agents-in-enterprise-workflows")({
-  head: () => ({
-    meta: [
-      { title: "Practical AI Agents in Enterprise Workflows | Srinithin Somasundaram" },
-      {
-        name: "description",
-        content:
-          "Executive Article by Srinithin Somasundaram: How to deploy autonomous AI agents that deliver measurable operational ROI and automate complex business workflows.",
-      },
-      {
-        name: "keywords",
-        content:
-          "Enterprise AI Agents, AI Workflow Automation, Srinithin Somasundaram, Practical AI Systems, Yesp Corporation AI Architecture",
-      },
-      { name: "geo.region", content: "IN-KA;IN-TN" },
-      { name: "geo.placename", content: "Bengaluru, Coimbatore, Erode, India" },
-      { name: "geo.position", content: "12.9716;77.5946" },
-      { name: "ICBM", content: "12.9716, 77.5946" },
-      { property: "og:title", content: "Practical AI Agents in Enterprise Workflows — Srinithin Somasundaram" },
-      {
-        property: "og:description",
-        content: "Deploying autonomous AI agents that eliminate repetitive work and accelerate enterprise operations.",
-      },
-      { property: "og:image", content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg" },
-      { property: "og:type", content: "article" },
-      { name: "twitter:title", content: "Practical AI Agents — Srinithin Somasundaram" },
-      {
-        name: "twitter:description",
-        content: "Executive insights by Srinithin Somasundaram, Founder & CEO of Yesp Corporation.",
-      },
-      { name: "twitter:image", content: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg" },
-    ],
-    links: [{ rel: "canonical", href: "/articles/practical-ai-agents-in-enterprise-workflows" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "TechArticle",
-              "@id": "https://yespstudio.com/articles/practical-ai-agents-in-enterprise-workflows#article",
-              headline: "Deploying Practical AI Agents: Bridging the Gap Between AI Hype and Operational ROI",
-              description: "A pragmatic guide for C-suite leaders on deploying task-specific AI agents into production business backbones.",
-              datePublished: "2026-08-04T09:00:00+05:30",
-              dateModified: "2026-08-04T09:00:00+05:30",
-              author: {
-                "@type": "Person",
-                name: "Srinithin Somasundaram",
-                jobTitle: "Founder & CEO",
-                worksFor: { "@type": "Corporation", name: "Yesp Corporation" },
-                url: "https://yespstudio.com/founder",
-                sameAs: [
-                  "https://www.linkedin.com/in/srinithinsomasundaram/",
-                  "https://www.instagram.com/srinithin.somasundaram/",
-                ],
-              },
-              publisher: {
-                "@type": "Corporation",
-                name: "Yesp Corporation",
-                url: "https://yespstudio.com",
-                logo: "https://yespstudio.com/assets/yesp-footer-logo.png",
-                slogan: "Make Better Happen.",
-              },
-              image: "https://yespstudio.com/assets/founder-srinithin-somasundaram.jpg",
-              mainEntityOfPage: "https://yespstudio.com/articles/practical-ai-agents-in-enterprise-workflows",
-            },
-          ],
-        }),
-      },
-    ],
-  }),
-  component: Article2,
-});
-
-function Article2() {
+export default function Article2() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
