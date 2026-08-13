@@ -130,8 +130,8 @@ type CareerFormData = {
   phone: string;
   profile: string;
   message: string;
-  resumeName?: string;
-  resumeData?: string;
+  resumeName?: string | undefined;
+  resumeData?: string | undefined;
 };
 
 const sendCareerEmail = createServerFn({ method: "POST" })
@@ -366,7 +366,7 @@ function CareersPage() {
   } | null>(null);
 
   const handleOpenApply = (roleTitle?: string) => {
-    setSelectedRole(roleTitle || roles[0].title);
+    setSelectedRole(roleTitle || (roles[0]?.title ?? "Other"));
     setResume(null);
     setStatus("idle");
     setStatusMessage("");
@@ -712,11 +712,7 @@ function CareersPage() {
                   </button>
 
                   {statusMessage && (
-                    <p
-                      className={`text-center text-sm font-semibold ${
-                        status === "sent" ? "text-primary" : "text-destructive"
-                      }`}
-                    >
+                    <p className="text-center text-sm font-semibold text-destructive">
                       {statusMessage}
                     </p>
                   )}

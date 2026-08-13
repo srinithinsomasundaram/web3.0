@@ -330,11 +330,7 @@ function ContactPage() {
               </button>
 
               {statusMessage && (
-                <p
-                  className={`text-center text-sm font-semibold ${
-                    status === "sent" ? "text-primary" : "text-destructive"
-                  }`}
-                >
+                <p className="text-center text-sm font-semibold text-destructive">
                   {statusMessage}
                 </p>
               )}
