@@ -32,7 +32,7 @@ const SEARCH_DATABASE: SearchPageItem[] = [
     id: "yesp-one",
     title: "Yesp One — Built around your business.",
     category: "Pages",
-    path: "/yesp-one",
+    path: "https://one.yespstudio.com/",
     description: "Flexible business technology service: understand → build → manage → improve.",
     keywords: "yesp one core erp custom software business core system inventory sales finance automation",
   },

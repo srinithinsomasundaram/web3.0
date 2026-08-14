@@ -184,14 +184,11 @@ export default function YespOnePage() {
             </div>
 
             {/* Brand Logo Header */}
-            <div className="mt-8 flex items-center justify-center gap-3 sm:gap-5">
-              <span className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-foreground">
-                Yesp
-              </span>
+            <div className="mt-8 flex items-center justify-center">
               <img
                 src={yespOneLogo}
                 alt="Yesp One Logo"
-                className="h-12 sm:h-20 md:h-24 object-contain drop-shadow-md transition-transform hover:scale-105"
+                className="h-16 sm:h-24 md:h-32 w-auto object-contain drop-shadow-lg transition-transform duration-300 hover:scale-105"
               />
             </div>
 
@@ -206,23 +203,23 @@ export default function YespOnePage() {
             </p>
 
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+              <a
+                href="https://one.yespstudio.com/"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center gap-2.5 rounded-full bg-brand px-7 py-3.5 text-sm font-bold text-primary-foreground shadow-elevated transition-transform hover:-translate-y-0.5"
+              >
+                <span>Launch Yesp One</span>
+                <ArrowRight className="h-4 w-4" />
+              </a>
+
               <button
                 type="button"
                 onClick={() => setAssessmentModalOpen(true)}
-                className="inline-flex items-center justify-center gap-2.5 rounded-full bg-brand px-7 py-3.5 text-sm font-bold text-primary-foreground shadow-elevated transition-transform hover:-translate-y-0.5 cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-secondary/80 px-7 py-3.5 text-sm font-bold text-foreground transition-all hover:border-primary/40 hover:bg-secondary cursor-pointer"
               >
-                <span>Start Your Business Assessment</span>
-                <ArrowRight className="h-4 w-4" />
+                Business Assessment
               </button>
-
-              <a
-                href={bookingUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-full border border-border bg-secondary/80 px-7 py-3.5 text-sm font-bold text-foreground transition-all hover:border-primary/40 hover:bg-secondary"
-              >
-                Talk to Yesp
-              </a>
             </div>
 
             {/* Sub-tagline */}
@@ -508,27 +505,28 @@ export default function YespOnePage() {
             </p>
 
             <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+              <a
+                href="https://one.yespstudio.com/"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-brand px-8 py-4 text-sm font-bold text-primary-foreground shadow-elevated transition-transform hover:-translate-y-0.5"
+              >
+                <span>Go to Yesp One Platform</span>
+                <ArrowRight className="h-4 w-4" />
+              </a>
+
               <button
                 type="button"
                 onClick={() => setAssessmentModalOpen(true)}
-                className="inline-flex items-center gap-2 rounded-full bg-brand px-8 py-4 text-sm font-bold text-primary-foreground shadow-elevated transition-transform hover:-translate-y-0.5 cursor-pointer"
+                className="inline-flex items-center justify-center rounded-full border border-border bg-secondary px-8 py-4 text-sm font-bold text-foreground transition-colors hover:bg-secondary/80 cursor-pointer"
               >
-                <span>Start with a Business Assessment</span>
-                <ArrowRight className="h-4 w-4" />
+                Start Assessment
               </button>
-
-              <Link
-                to="/contact"
-                className="inline-flex items-center justify-center rounded-full border border-border bg-secondary px-8 py-4 text-sm font-bold text-foreground transition-colors hover:bg-secondary/80"
-              >
-                Contact Us
-              </Link>
             </div>
 
             <div className="mt-12 pt-8 border-t border-border/40 flex flex-col items-center justify-center gap-2">
-              <div className="flex items-center gap-3">
-                <span className="font-display text-xl font-extrabold text-foreground">Yesp</span>
-                <img src={yespOneLogo} alt="Yesp One" className="h-6 object-contain" />
+              <div className="flex items-center justify-center">
+                <img src={yespOneLogo} alt="Yesp One Logo" className="h-10 sm:h-12 w-auto object-contain" />
               </div>
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
                 Built around your business.

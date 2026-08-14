@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "@/assets/yesp-footer-logo.png";
+import yespOneLogo from "@/assets/yesp-one-logo.png";
 import { bookingUrl } from "@/lib/links";
 import { Menu, X, ArrowRight, Sparkles } from "lucide-react";
 import { SiteInlineSearch } from "./SiteInlineSearch";
@@ -26,14 +27,15 @@ export function SiteHeader() {
 
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-6 text-xs font-semibold text-muted-foreground lg:flex">
-          <NavLink
-            to="/yesp-one"
-            className={({ isActive }) =>
-              `transition-colors font-bold ${isActive ? "text-primary font-extrabold" : "text-primary hover:text-foreground"}`
-            }
+          <a
+            href="https://one.yespstudio.com/"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center transition-transform hover:scale-105 active:scale-95"
+            title="Yesp One Platform"
           >
-            Yesp One
-          </NavLink>
+            <img src={yespOneLogo} alt="Yesp One Logo" className="h-8 sm:h-9 w-auto object-contain drop-shadow-sm" />
+          </a>
           <a href="/#solutions" className="transition-colors hover:text-foreground">Solutions</a>
           <a href="/#process" className="transition-colors hover:text-foreground">Process</a>
           <NavLink
@@ -105,14 +107,16 @@ export function SiteHeader() {
       {mobileMenuOpen && (
         <div className="border-b border-border/80 bg-background/95 backdrop-blur-lg md:hidden animate-in fade-in slide-in-from-top-2 duration-200">
           <nav className="mx-auto max-w-6xl px-6 py-6 flex flex-col gap-4 text-sm font-semibold text-foreground">
-            <Link
-              to="/yesp-one"
+            <a
+              href="https://one.yespstudio.com/"
+              target="_blank"
+              rel="noreferrer"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center justify-between border-b border-border/40 pb-3 text-primary font-bold hover:opacity-80"
             >
-              <span>Yesp One</span>
+              <img src={yespOneLogo} alt="Yesp One Platform" className="h-7 w-auto object-contain" />
               <ArrowRight className="h-4 w-4 opacity-50" />
-            </Link>
+            </a>
             <a
               href="/#solutions"
               onClick={() => setMobileMenuOpen(false)}

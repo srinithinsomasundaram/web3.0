@@ -17,7 +17,7 @@ const SEARCH_INDEX: SearchItem[] = [
     id: "yesp-one",
     title: "Yesp One — Built around your business.",
     category: "Pages",
-    path: "/yesp-one",
+    path: "https://one.yespstudio.com/",
     description: "Flexible business technology service: understand → build → manage → improve.",
     keywords: "yesp one core erp custom software business core system inventory sales finance automation",
   },
@@ -267,7 +267,11 @@ export function SiteInlineSearch() {
   const handleSelect = (path: string) => {
     setIsOpen(false);
     setQuery("");
-    navigate(path);
+    if (path.startsWith("http")) {
+      window.open(path, "_blank", "noopener,noreferrer");
+    } else {
+      navigate(path);
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {

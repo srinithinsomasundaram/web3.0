@@ -76,7 +76,14 @@ export function SiteFooter() {
             <p className="text-xs font-bold uppercase tracking-wider text-primary">Solutions & Work</p>
             <ul className="space-y-2.5 text-sm opacity-80 font-medium">
               <li>
-                <Link to="/yesp-one" className="hover:opacity-100 transition-opacity font-bold text-primary">Yesp One</Link>
+                <a
+                  href="https://one.yespstudio.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:opacity-100 transition-opacity font-bold text-primary"
+                >
+                  Yesp One
+                </a>
               </li>
               <li>
                 <Link to="/tech-expertise" className="hover:opacity-100 transition-opacity">Technical Expertise</Link>

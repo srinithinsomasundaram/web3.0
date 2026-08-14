@@ -6,6 +6,7 @@ import { MakeBetterHappenLogo } from "@/components/brand/MakeBetterHappenLogo";
 import { caseStudies } from "@/lib/case-studies";
 import { bookingUrl } from "@/lib/links";
 import { services } from "@/lib/services";
+import yespOneLogo from "@/assets/yesp-one-logo.png";
 import {
   ArrowRight,
   CheckCircle2,
@@ -15,6 +16,10 @@ import {
   HeartPulse,
   Factory,
   Sparkles,
+  Layers,
+  Boxes,
+  ShieldCheck,
+  Bot,
 } from "lucide-react";
 
 const heroPhrases = [
@@ -142,13 +147,15 @@ export default function Index() {
 
               {/* Action CTA Buttons */}
               <div className="flex flex-wrap items-center gap-2.5 pt-2 sm:gap-4">
-                <Link
-                  to="/yesp-one"
+                <a
+                  href="https://one.yespstudio.com/"
+                  target="_blank"
+                  rel="noreferrer"
                   className="inline-flex items-center justify-center gap-2 rounded-full bg-brand px-5 py-2.5 text-xs sm:px-7 sm:py-3.5 sm:text-sm font-bold text-primary-foreground shadow-elevated transition-transform hover:-translate-y-0.5"
                 >
                   <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                   <span>Yesp One</span>
-                </Link>
+                </a>
                 <a
                   href={bookingUrl}
                   target="_blank"
@@ -163,6 +170,83 @@ export default function Index() {
                 >
                   Explore Solutions
                 </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Section: Yesp One Platform Showcase */}
+        <section id="yesp-one" className="relative overflow-hidden border-b border-border/60 bg-gradient-to-b from-card/80 via-secondary/30 to-background py-12 sm:py-20 px-4 sm:px-6">
+          <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[30rem] w-[30rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 blur-3xl opacity-70" />
+          
+          <div className="mx-auto max-w-6xl">
+            <div className="rounded-3xl border border-primary/30 bg-gradient-to-b from-card/95 to-secondary/40 p-6 sm:p-10 md:p-14 shadow-elevated backdrop-blur-md">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 sm:gap-12">
+                <div className="space-y-4 max-w-2xl">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1 text-xs font-bold uppercase tracking-widest text-primary">
+                    <Layers className="h-3.5 w-3.5" />
+                    Unified Platform Service
+                  </div>
+
+                  <div className="pt-1">
+                    <img src={yespOneLogo} alt="Yesp One Logo" className="h-12 sm:h-16 w-auto object-contain drop-shadow-md" />
+                  </div>
+
+                  <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-foreground">
+                    Your business operations. <br />
+                    <span className="text-gradient-brand">Built into one digital core.</span>
+                  </h2>
+
+                  <p className="text-xs sm:text-base leading-relaxed text-muted-foreground">
+                    Yesp One brings sales, inventory, purchasing, finance, and AI workflows together into a single custom-engineered platform. No bloat, no unused subscriptions — built specifically for how your business runs.
+                  </p>
+
+                  <div className="flex flex-wrap items-center gap-3 pt-3">
+                    <a
+                      href="https://one.yespstudio.com/"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 text-xs sm:text-sm font-bold text-primary-foreground shadow-elevated transition-transform hover:-translate-y-0.5"
+                    >
+                      <span>Launch Yesp One</span>
+                      <ArrowRight className="h-4 w-4" />
+                    </a>
+
+                    <Link
+                      to="/yesp-one"
+                      className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-secondary/80 px-6 py-3 text-xs sm:text-sm font-bold text-foreground transition-all hover:border-primary/40 hover:bg-secondary"
+                    >
+                      <span>Explore Overview & Assessment</span>
+                    </Link>
+                  </div>
+                </div>
+
+                {/* Features Grid side card */}
+                <div className="grid gap-3.5 sm:grid-cols-2 md:grid-cols-1 w-full md:w-80 shrink-0">
+                  <div className="rounded-2xl border border-border/70 bg-card/90 p-4.5 shadow-sm transition-all hover:border-primary/40">
+                    <div className="flex items-center gap-2.5 text-xs font-bold text-primary">
+                      <Boxes className="h-4 w-4" />
+                      <span>Custom Built MVP</span>
+                    </div>
+                    <p className="mt-1.5 text-xs text-muted-foreground leading-relaxed">Start with what you need today (e.g. Stock Control), expand when ready.</p>
+                  </div>
+
+                  <div className="rounded-2xl border border-border/70 bg-card/90 p-4.5 shadow-sm transition-all hover:border-primary/40">
+                    <div className="flex items-center gap-2.5 text-xs font-bold text-primary">
+                      <Bot className="h-4 w-4" />
+                      <span>AI & Automation Integrated</span>
+                    </div>
+                    <p className="mt-1.5 text-xs text-muted-foreground leading-relaxed">Automated approvals, alert triggers, and document intelligence built in.</p>
+                  </div>
+
+                  <div className="rounded-2xl border border-border/70 bg-card/90 p-4.5 shadow-sm transition-all hover:border-primary/40">
+                    <div className="flex items-center gap-2.5 text-xs font-bold text-primary">
+                      <ShieldCheck className="h-4 w-4" />
+                      <span>100% Managed by Yesp</span>
+                    </div>
+                    <p className="mt-1.5 text-xs text-muted-foreground leading-relaxed">Dedicated engineering team for build, maintenance, and ongoing updates.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
