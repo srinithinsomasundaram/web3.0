@@ -27,12 +27,12 @@ export function SiteHeader() {
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-6 text-xs font-semibold text-muted-foreground lg:flex">
           <NavLink
-            to="/yesp-core"
+            to="/yesp-one"
             className={({ isActive }) =>
               `transition-colors font-bold ${isActive ? "text-primary font-extrabold" : "text-primary hover:text-foreground"}`
             }
           >
-            Yesp Core
+            Yesp One
           </NavLink>
           <a href="/#solutions" className="transition-colors hover:text-foreground">Solutions</a>
           <a href="/#process" className="transition-colors hover:text-foreground">Process</a>
@@ -106,11 +106,11 @@ export function SiteHeader() {
         <div className="border-b border-border/80 bg-background/95 backdrop-blur-lg md:hidden animate-in fade-in slide-in-from-top-2 duration-200">
           <nav className="mx-auto max-w-6xl px-6 py-6 flex flex-col gap-4 text-sm font-semibold text-foreground">
             <Link
-              to="/yesp-core"
+              to="/yesp-one"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center justify-between border-b border-border/40 pb-3 text-primary font-bold hover:opacity-80"
             >
-              <span>Yesp Core</span>
+              <span>Yesp One</span>
               <ArrowRight className="h-4 w-4 opacity-50" />
             </Link>
             <a

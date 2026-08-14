@@ -4,11 +4,11 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite dev --host 0.0.0.0",
     "build": "vite build",
-    "start": "node scripts/start-server.js",
     "build:dev": "vite build --mode development",
-    "preview": "vite preview",
+    "start": "vite dev --host 0.0.0.0",
+    "preview": "vite preview --host 0.0.0.0",
     "lint": "eslint .",
     "format": "prettier --write ."
   },

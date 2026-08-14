@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import { useEffect } from "react";
 
 import HomePage from "./routes/index";
+import YespOnePage from "./routes/yesp-one";
 import YespCorePage from "./routes/yesp-core";
 import AboutPage from "./routes/about";
 import ContactPage from "./routes/contact";
@@ -49,7 +50,8 @@ export default function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/yesp-core" element={<YespCorePage />} />
+        <Route path="/yesp-one" element={<YespOnePage />} />
+        <Route path="/yesp-core" element={<YespOnePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/careers" element={<CareersPage />} />

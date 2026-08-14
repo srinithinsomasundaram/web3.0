@@ -143,11 +143,11 @@ export default function Index() {
               {/* Action CTA Buttons */}
               <div className="flex flex-wrap items-center gap-2.5 pt-2 sm:gap-4">
                 <Link
-                  to="/yesp-core"
+                  to="/yesp-one"
                   className="inline-flex items-center justify-center gap-2 rounded-full bg-brand px-5 py-2.5 text-xs sm:px-7 sm:py-3.5 sm:text-sm font-bold text-primary-foreground shadow-elevated transition-transform hover:-translate-y-0.5"
                 >
                   <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                  <span>Yesp Core</span>
+                  <span>Yesp One</span>
                 </Link>
                 <a
                   href={bookingUrl}

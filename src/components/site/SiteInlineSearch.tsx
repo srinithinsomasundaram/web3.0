@@ -14,12 +14,12 @@ export interface SearchItem {
 const SEARCH_INDEX: SearchItem[] = [
   // Core Pages
   {
-    id: "yesp-core",
-    title: "Yesp Core — Built around your business.",
+    id: "yesp-one",
+    title: "Yesp One — Built around your business.",
     category: "Pages",
-    path: "/yesp-core",
+    path: "/yesp-one",
     description: "Flexible business technology service: understand → build → manage → improve.",
-    keywords: "yesp core erp custom software business core system inventory sales finance automation",
+    keywords: "yesp one core erp custom software business core system inventory sales finance automation",
   },
   {
     id: "home",
