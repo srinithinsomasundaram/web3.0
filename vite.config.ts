@@ -5,14 +5,14 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import path from "node:path";
 
 export default defineConfig({
-  plugins: [tailwindcss(), tsconfigPaths(), react()],
+  plugins: [react(), tailwindcss(), tsconfigPaths()],
   resolve: {
     alias: {
       "@": path.resolve("src"),
       "node:net": path.resolve("src/lib/empty-shim.ts"),
       "node:tls": path.resolve("src/lib/empty-shim.ts"),
-      "net": path.resolve("src/lib/empty-shim.ts"),
-      "tls": path.resolve("src/lib/empty-shim.ts"),
+      net: path.resolve("src/lib/empty-shim.ts"),
+      tls: path.resolve("src/lib/empty-shim.ts"),
     },
   },
   server: {
