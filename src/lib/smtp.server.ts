@@ -10,15 +10,20 @@ type WebsiteEmail = {
   text: string;
   to?: string;
   attachments?: WebsiteEmailAttachment[];
+  applicantName?: string;
+  applicantRole?: string;
+  applicantPhone?: string;
+  applicantMessage?: string;
+  resumeName?: string;
 };
 
-export async function sendWebsiteEmail({ subject, replyTo, text, to, attachments }: WebsiteEmail) {
+export async function sendWebsiteEmail({ subject, replyTo, text, to, attachments, applicantName, applicantRole, applicantPhone, applicantMessage, resumeName }: WebsiteEmail) {
   if (typeof window !== "undefined") {
     // Client-side browser execution: Route through same-origin /api/send-email to prevent CORS preflight blocks
     const res = await fetch("/api/send-email", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ subject, replyTo, text, to, attachments }),
+      body: JSON.stringify({ subject, replyTo, text, to, attachments, applicantName, applicantRole, applicantPhone, applicantMessage, resumeName }),
     });
 
     const resData = (await res.json()) as any;

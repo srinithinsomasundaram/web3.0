@@ -1,6 +1,6 @@
 import { useState, type FormEvent, type DragEvent } from "react";
 import { Link } from "react-router-dom";
-import { Upload, FileText, X, Globe, Laptop, CheckCircle2, Mail } from "lucide-react";
+import { Upload, FileText, X, Globe, Laptop, CheckCircle2 } from "lucide-react";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { sendWebsiteEmail } from "@/lib/smtp.server";
@@ -63,6 +63,32 @@ const roles = [
       "Document intelligence & optical parsing pipelines",
       "LLM API integration & deterministic fallback guardrails",
       "Real-time background queue automation engines",
+    ],
+  },
+  {
+    title: "Generative AI Engineer",
+    team: "Gen AI",
+    type: "Full-time · 100% Remote",
+    summary:
+      "Design and ship production-grade generative AI systems — from prompt engineering and RAG pipelines to fine-tuned model deployment and evaluation frameworks for enterprise clients.",
+    responsibilities: [
+      "Prompt engineering, chain-of-thought & RAG architecture",
+      "LLM fine-tuning, evaluation & safety guardrails",
+      "AI-powered document generation & data extraction pipelines",
+      "Model deployment, monitoring & cost optimisation",
+    ],
+  },
+  {
+    title: "SEO & GEO Strategist",
+    team: "Growth",
+    type: "Full-time · 100% Remote",
+    summary:
+      "Own end-to-end search and generative engine visibility for Yesp and its enterprise clients — spanning technical SEO, AI-answer optimisation (GEO), and authority content programmes.",
+    responsibilities: [
+      "Technical SEO audits, site architecture & Core Web Vitals",
+      "Generative Engine Optimisation (GEO) for AI-driven search",
+      "Authority content strategy, interlinking & distribution",
+      "Keyword research, ranking analysis & performance reporting",
     ],
   },
 ];
@@ -204,7 +230,6 @@ export default function CareersPage() {
     const name = String(formData.get("name") ?? "").trim();
     const email = String(formData.get("email") ?? "").trim();
     const phone = String(formData.get("phone") ?? "").trim();
-    const profile = String(formData.get("profile") ?? "").trim();
     const message = String(formData.get("message") ?? "").trim();
 
     const formattedRole = role === "Other" ? "General Application / Talent Network" : role;
@@ -220,26 +245,15 @@ export default function CareersPage() {
 
     try {
       await sendWebsiteEmail({
-        subject: `[YESP CAREERS] New Application: ${name} (${formattedRole})`,
+        subject: `[YESP CAREERS] New Application — ${name} · ${formattedRole}`,
         replyTo: email,
         to: "srinithinoffl@gmail.com",
-        text: [
-          "[YESP CAREERS] New Job Application Received",
-          "==========================================",
-          `• Position Applied: ${formattedRole}`,
-          `• Work Environment: Virtual Mode (100% Remote)`,
-          `• Candidate Name:   ${name}`,
-          `• Candidate Email:  ${email}`,
-          `• Contact Phone:    ${phone || "Not provided"}`,
-          `• Profile / Link:   ${profile || "Not provided"}`,
-          `• Resume File:      ${resume?.name || "No file uploaded"}`,
-          "",
-          "Cover Note / Candidate Statement:",
-          "----------------------------------------",
-          message,
-          "----------------------------------------",
-          `Submission Timestamp: ${new Date().toLocaleString()}`,
-        ].join("\n"),
+        text: message,
+        applicantName: name,
+        applicantRole: formattedRole,
+        applicantPhone: phone || undefined,
+        applicantMessage: message,
+        resumeName: resume?.name || undefined,
         ...(resume?.base64 && resume?.name
           ? {
               attachments: [
@@ -254,29 +268,6 @@ export default function CareersPage() {
             }
           : {}),
       });
-
-      // Send confirmation to applicant
-      sendWebsiteEmail({
-        subject: `Application Received — ${formattedRole} | Yesp Corporation`,
-        replyTo: "srinithinoffl@gmail.com",
-        to: email,
-        text: [
-          `Dear ${name},`,
-          "",
-          `Thank you for submitting your application to Yesp Corporation.`,
-          "",
-          `We have successfully received your candidate profile for the ${formattedRole} position (Virtual Mode / 100% Remote).`,
-          "",
-          "Our Talent Acquisition Team is reviewing your submission. If your background aligns with our immediate openings, a team member will reach out to schedule an initial discussion.",
-          "",
-          "Thank you for your interest in building with Yesp Corporation.",
-          "",
-          "Sincerely,",
-          "Talent Acquisition Team",
-          "Yesp Corporation",
-          "Make Better Happen.",
-        ].join("\n"),
-      }).catch((e) => console.warn("Applicant confirmation email warning:", e));
 
       form.reset();
       setResume(null);
@@ -356,41 +347,40 @@ export default function CareersPage() {
             </button>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2">
+          <ul className="divide-y divide-border rounded-2xl border border-border bg-card shadow-sm overflow-hidden">
             {roles.map((role) => (
-              <div key={role.title} className="rounded-2xl border border-border bg-card p-6 sm:p-8 space-y-5 flex flex-col justify-between shadow-sm hover:border-primary/50 transition-colors">
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between gap-2">
+              <li key={role.title} className="flex flex-col sm:flex-row sm:items-start gap-5 px-6 py-6 hover:bg-accent/20 transition-colors">
+                <div className="flex-1 space-y-3 min-w-0">
+                  <div className="flex flex-wrap items-center gap-2">
                     <span className="rounded-md bg-accent px-2.5 py-1 text-[0.68rem] font-bold uppercase tracking-wider text-accent-foreground">
                       {role.team}
                     </span>
-                    <span className="text-xs font-semibold text-muted-foreground">{role.type}</span>
+                    <span className="text-[0.68rem] font-semibold text-muted-foreground border border-border rounded-md px-2.5 py-1 uppercase tracking-wider">
+                      {role.type}
+                    </span>
                   </div>
-                  <h3 className="text-xl font-bold text-foreground">{role.title}</h3>
+                  <h3 className="text-lg font-bold text-foreground leading-tight">{role.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{role.summary}</p>
-
-                  <div className="pt-2 space-y-2">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Key Focus:</p>
-                    <ul className="space-y-1.5 text-xs text-muted-foreground">
-                      {role.responsibilities.map((resp, idx) => (
-                        <li key={idx} className="flex items-start gap-2">
-                          <CheckCircle2 className="h-3.5 w-3.5 text-primary shrink-0 mt-0.5" />
-                          <span>{resp}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <ul className="space-y-1.5 pt-1">
+                    {role.responsibilities.map((resp, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-xs text-muted-foreground">
+                        <CheckCircle2 className="h-3.5 w-3.5 text-primary shrink-0 mt-0.5" />
+                        <span>{resp}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-
-                <button
-                  onClick={() => handleOpenApply(role.title)}
-                  className="mt-4 w-full rounded-full bg-brand px-5 py-3 text-xs font-bold text-primary-foreground shadow-elevated transition-transform hover:-translate-y-0.5 cursor-pointer"
-                >
-                  Apply for Position
-                </button>
-              </div>
+                <div className="sm:pt-1 shrink-0">
+                  <button
+                    onClick={() => handleOpenApply(role.title)}
+                    className="rounded-full bg-brand px-5 py-2.5 text-xs font-bold text-primary-foreground shadow-elevated transition-transform hover:-translate-y-0.5 cursor-pointer whitespace-nowrap"
+                  >
+                    Apply Now
+                  </button>
+                </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </main>
 
@@ -493,19 +483,6 @@ export default function CareersPage() {
                       className="w-full rounded-xl border border-input bg-background px-4 py-2.5 text-xs outline-none focus:border-primary"
                     />
                   </div>
-                </div>
-
-                <div>
-                  <label htmlFor="modal-profile" className="text-xs font-semibold uppercase tracking-wider text-muted-foreground block mb-1">
-                    LinkedIn Profile or GitHub URL
-                  </label>
-                  <input
-                    id="modal-profile"
-                    name="profile"
-                    type="url"
-                    placeholder="https://linkedin.com/in/username"
-                    className="w-full rounded-xl border border-input bg-background px-4 py-2.5 text-xs outline-none focus:border-primary"
-                  />
                 </div>
 
                 <ResumeUploadInput file={resume} onFileChange={setResume} />
