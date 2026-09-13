@@ -29,6 +29,7 @@ import ServicesIndexPage from "./routes/services.index";
 import ServiceDetailPage from "./routes/services.$slug";
 import YespAccountsIndexPage from "./routes/yesp-accounts.index";
 import YespAccountsDetailPage from "./routes/yesp-accounts.$slug";
+import VisionPage from "./routes/vision";
 import IndustriesIndexPage from "./routes/industries.index";
 import IndustryDetailPage from "./routes/industries.$slug";
 import LocationDetailPage from "./routes/locations.$slug";
@@ -59,6 +60,7 @@ export default function App() {
         <Route path="/yesp-one" element={<YespOnePage />} />
         <Route path="/yesp-core" element={<YespOnePage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/vision" element={<VisionPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/careers" element={<CareersPage />} />
         <Route path="/case-studies" element={<CaseStudiesPage />} />

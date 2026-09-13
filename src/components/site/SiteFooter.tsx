@@ -55,6 +55,7 @@ export function SiteFooter() {
             <p className="text-xs font-bold uppercase tracking-wider text-primary">Company</p>
             <ul className="space-y-2.5 text-sm opacity-80 font-medium">
               <li><Link to="/about" className="hover:opacity-100 transition-opacity">About Yesp</Link></li>
+              <li><Link to="/vision" className="hover:opacity-100 transition-opacity">Vision &amp; Mission</Link></li>
               <li><Link to="/founder" className="hover:opacity-100 transition-opacity">Founder Profile</Link></li>
               <li><Link to="/press" className="hover:opacity-100 transition-opacity">Press Center</Link></li>
               <li><Link to="/articles" className="hover:opacity-100 transition-opacity">Executive Articles</Link></li>
