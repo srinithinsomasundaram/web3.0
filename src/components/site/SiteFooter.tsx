@@ -87,6 +87,24 @@ export function SiteFooter() {
             </ul>
           </div>
 
+          {/* Yesp Accounts */}
+          <div className="md:col-span-2 space-y-3">
+            <p className="text-xs font-bold uppercase tracking-wider text-primary">Yesp Accounts</p>
+            <ul className="space-y-2.5 text-sm opacity-80 font-medium">
+              <li><Link to="/yesp-accounts" className="hover:opacity-100 transition-opacity font-bold text-primary/90">Platform Overview</Link></li>
+              <li><Link to="/yesp-accounts/single-sign-on" className="hover:opacity-100 transition-opacity">Single Sign-On</Link></li>
+              <li><Link to="/yesp-accounts/multi-factor-authentication" className="hover:opacity-100 transition-opacity">MFA</Link></li>
+              <li><Link to="/yesp-accounts/passkeys" className="hover:opacity-100 transition-opacity">Passkeys</Link></li>
+              <li><Link to="/yesp-accounts/organization-management" className="hover:opacity-100 transition-opacity">Organisations</Link></li>
+              <li><Link to="/yesp-accounts/oauth-api" className="hover:opacity-100 transition-opacity">OAuth2 API</Link></li>
+              <li><Link to="/yesp-accounts/session-management" className="hover:opacity-100 transition-opacity">Sessions</Link></li>
+              <li><Link to="/yesp-accounts/smart-login" className="hover:opacity-100 transition-opacity">Smart Login</Link></li>
+              <li><Link to="/yesp-accounts/india" className="hover:opacity-100 transition-opacity">For India</Link></li>
+              <li><Link to="/yesp-accounts/uk" className="hover:opacity-100 transition-opacity">For UK</Link></li>
+              <li><Link to="/yesp-accounts/usa" className="hover:opacity-100 transition-opacity">For USA</Link></li>
+            </ul>
+          </div>
+
           {/* Industries */}
           <div className="md:col-span-2 space-y-3">
             <p className="text-xs font-bold uppercase tracking-wider text-primary">Industries</p>

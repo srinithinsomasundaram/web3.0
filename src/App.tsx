@@ -27,6 +27,8 @@ import ArticleAiDeliveryPage from "./routes/articles.yesp-corp-global-engineerin
 
 import ServicesIndexPage from "./routes/services.index";
 import ServiceDetailPage from "./routes/services.$slug";
+import YespAccountsIndexPage from "./routes/yesp-accounts.index";
+import YespAccountsDetailPage from "./routes/yesp-accounts.$slug";
 import IndustriesIndexPage from "./routes/industries.index";
 import IndustryDetailPage from "./routes/industries.$slug";
 import LocationDetailPage from "./routes/locations.$slug";
@@ -66,6 +68,10 @@ export default function App() {
         {/* Services */}
         <Route path="/services" element={<ServicesIndexPage />} />
         <Route path="/services/:slug" element={<ServiceDetailPage />} />
+
+        {/* Yesp Accounts */}
+        <Route path="/yesp-accounts" element={<YespAccountsIndexPage />} />
+        <Route path="/yesp-accounts/:slug" element={<YespAccountsDetailPage />} />
 
         {/* Solutions hub */}
         <Route path="/solutions" element={<SolutionsPage />} />
