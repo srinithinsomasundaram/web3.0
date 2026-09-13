@@ -1,13 +1,26 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "@/assets/yesp-footer-logo.png";
 import yespOneLogo from "@/assets/yesp-one-logo.png";
 import { bookingUrl } from "@/lib/links";
-import { Menu, X, ArrowRight, Sparkles } from "lucide-react";
+import { Menu, X, ArrowRight, Sparkles, UserCircle, LayoutDashboard, LogIn } from "lucide-react";
 import { SiteInlineSearch } from "./SiteInlineSearch";
 
 export function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
+  const profileRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (profileRef.current && !profileRef.current.contains(e.target as Node)) {
+        setProfileOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/90 backdrop-blur-md">
@@ -86,6 +99,54 @@ export function SiteHeader() {
           >
             Book a Call
           </a>
+
+          {/* Profile Icon with Dropdown */}
+          <div ref={profileRef} className="relative shrink-0">
+            <button
+              type="button"
+              onClick={() => setProfileOpen(!profileOpen)}
+              className={`flex h-9 w-9 items-center justify-center rounded-full border transition-all focus:outline-none ${
+                profileOpen
+                  ? "border-primary bg-primary/10 text-primary"
+                  : "border-border bg-secondary/80 text-muted-foreground hover:border-primary/40 hover:text-foreground"
+              }`}
+              aria-label="Account"
+            >
+              <UserCircle className="h-5 w-5" />
+            </button>
+
+            {/* Dropdown */}
+            {profileOpen && (
+              <div className="absolute right-0 top-[calc(100%+8px)] z-50 w-52 rounded-2xl border border-border bg-background/95 backdrop-blur-md shadow-xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150">
+                <div className="px-4 py-3 border-b border-border/60">
+                  <p className="text-xs font-semibold text-foreground">Yesp Accounts</p>
+                  <p className="text-[11px] text-muted-foreground mt-0.5">Manage your identity</p>
+                </div>
+                <div className="py-1.5">
+                  <a
+                    href="https://accounts.yesp.space/console"
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={() => setProfileOpen(false)}
+                    className="flex items-center gap-2.5 px-4 py-2 text-xs font-medium text-foreground hover:bg-secondary transition-colors"
+                  >
+                    <LayoutDashboard className="h-3.5 w-3.5 text-muted-foreground" />
+                    My Account
+                  </a>
+                  <a
+                    href="https://auth.yesp.space/auth/login"
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={() => setProfileOpen(false)}
+                    className="flex items-center gap-2.5 px-4 py-2 text-xs font-medium text-foreground hover:bg-secondary transition-colors"
+                  >
+                    <LogIn className="h-3.5 w-3.5 text-muted-foreground" />
+                    Sign in
+                  </a>
+                </div>
+              </div>
+            )}
+          </div>
 
           {/* Mobile Hamburger Toggle Button */}
           <button
@@ -186,11 +247,12 @@ export function SiteHeader() {
             <Link
               to="/contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-between hover:text-primary pt-1"
+              className="flex items-center justify-between border-b border-border/40 pb-3 hover:text-primary"
             >
               <span>Contact Us</span>
               <ArrowRight className="h-4 w-4 opacity-50" />
             </Link>
+
           </nav>
         </div>
       )}

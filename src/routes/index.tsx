@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/site/SiteFooter";
 import { MakeBetterHappenLogo } from "@/components/brand/MakeBetterHappenLogo";
 import { caseStudies } from "@/lib/case-studies";
 import { bookingUrl } from "@/lib/links";
-import { services } from "@/lib/services";
+import { coreServices } from "@/lib/services";
 import yespOneLogo from "@/assets/yesp-one-logo.png";
 import {
   ArrowRight,
@@ -261,13 +261,13 @@ export default function Index() {
               </p>
               <h2 className="mt-1 text-2xl sm:text-3xl md:text-4xl font-bold">What We Do</h2>
             </div>
-            <Link to="/about" className="text-xs font-bold text-primary hover:underline flex items-center gap-1">
-              Learn about Yesp Corporation <ArrowRight className="h-3.5 w-3.5" />
+            <Link to="/services" className="text-xs font-bold text-primary hover:underline flex items-center gap-1">
+              All Services <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
 
           <div className="mt-8 sm:mt-10 grid gap-4 sm:gap-6 sm:grid-cols-2 md:grid-cols-3">
-            {services.map((d) => (
+            {coreServices.map((d) => (
               <Link
                 key={d.name}
                 to="/services/$slug"

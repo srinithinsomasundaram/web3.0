@@ -2,8 +2,31 @@ import { Link, useParams, Navigate } from "react-router-dom";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { bookingUrl } from "@/lib/links";
-import { getService } from "@/lib/services";
-import { MapPin, CheckCircle2, ArrowRight } from "lucide-react";
+import { getService, services } from "@/lib/services";
+import { useSEO } from "@/hooks/useSEO";
+import { MapPin, CheckCircle2, ArrowRight, ChevronDown } from "lucide-react";
+import { useState } from "react";
+
+function FAQItem({ q, a }: { q: string; a: string }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="border-b border-border/60 last:border-0">
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        className="flex w-full items-center justify-between gap-4 py-4 text-left text-sm font-bold text-foreground hover:text-primary transition-colors"
+      >
+        <span>{q}</span>
+        <ChevronDown
+          className={`h-4 w-4 text-primary shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+        />
+      </button>
+      {open && (
+        <p className="pb-5 text-xs sm:text-sm leading-relaxed text-muted-foreground">{a}</p>
+      )}
+    </div>
+  );
+}
 
 export default function ServiceDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -13,17 +36,68 @@ export default function ServiceDetailPage() {
     return <Navigate to="/" replace />;
   }
 
+  const faqSchema = service.faq.length > 0
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: service.faq.map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: { "@type": "Answer", text: item.a },
+        })),
+      }
+    : null;
+
+  useSEO({
+    title: service.seo.pageTitle,
+    description: service.seo.description,
+    keywords: service.seo.keywords,
+    canonical: service.seo.canonical,
+    jsonLd: faqSchema
+      ? [
+          {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            provider: {
+              "@type": "Organization",
+              name: "Yesp Corporation",
+              url: "https://yespstudio.com",
+            },
+            name: service.seo.h1,
+            description: service.seo.description,
+            areaServed: "Worldwide",
+          },
+          faqSchema,
+        ]
+      : {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          provider: {
+            "@type": "Organization",
+            name: "Yesp Corporation",
+            url: "https://yespstudio.com",
+          },
+          name: service.seo.h1,
+          description: service.seo.description,
+          areaServed: "Worldwide",
+        },
+  });
+
+  const relatedServices = service.related
+    .map((r) => services.find((s) => s.slug === r))
+    .filter(Boolean);
+
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       <SiteHeader />
       <main className="overflow-x-hidden">
-        {/* Service Hero Banner with GEO Location Pill */}
+        {/* Service Hero Banner */}
         <section className="relative overflow-hidden border-b border-border/60 py-12 sm:py-20">
           <div className="pointer-events-none absolute -right-32 -top-32 h-[34rem] w-[34rem] rounded-full bg-accent/70 blur-3xl" />
           <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
             <div className="flex flex-wrap items-center gap-3">
               <Link
-                to="/#solutions"
+                to="/services"
                 className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-foreground"
               >
                 Services
@@ -36,7 +110,7 @@ export default function ServiceDetailPage() {
 
             <p className="animate-rise mt-5 text-sm font-bold text-primary">{service.name}</p>
             <h1 className="animate-rise mt-2 max-w-4xl text-3xl font-extrabold leading-tight [animation-delay:80ms] sm:text-5xl md:text-6xl">
-              {service.title}
+              {service.seo.h1}
             </h1>
             <p className="animate-rise mt-5 max-w-2xl text-xs sm:text-base leading-relaxed text-muted-foreground [animation-delay:160ms] sm:text-lg">
               {service.intro}
@@ -105,7 +179,7 @@ export default function ServiceDetailPage() {
           </div>
         </section>
 
-        {/* How It Works Process */}
+        {/* How It Works */}
         <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-16">
           <p className="text-[0.68rem] sm:text-xs font-bold uppercase tracking-widest text-primary">
             Execution Methodology
@@ -123,7 +197,46 @@ export default function ServiceDetailPage() {
           </ol>
         </section>
 
-        {/* Discovery Call CTA Banner */}
+        {/* FAQ */}
+        {service.faq.length > 0 && (
+          <section className="border-t border-border/60 bg-secondary/20 py-10 sm:py-16">
+            <div className="mx-auto max-w-4xl px-4 sm:px-6">
+              <p className="text-[0.68rem] sm:text-xs font-bold uppercase tracking-widest text-primary mb-2">
+                FAQ
+              </p>
+              <h2 className="mt-1 text-2xl sm:text-3xl font-bold mb-8">Common Questions</h2>
+              <div className="rounded-3xl border border-border bg-card p-6 sm:p-8 shadow-card">
+                {service.faq.map((item) => (
+                  <FAQItem key={item.q} q={item.q} a={item.a} />
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Related Services */}
+        {relatedServices.length > 0 && (
+          <section className="border-t border-border/60 py-10 sm:py-14">
+            <div className="mx-auto max-w-6xl px-4 sm:px-6">
+              <p className="text-[0.68rem] sm:text-xs font-bold uppercase tracking-widest text-primary mb-4">
+                Related Services
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {relatedServices.map((s) => s && (
+                  <Link
+                    key={s.slug}
+                    to={`/services/${s.slug}`}
+                    className="rounded-full border border-border bg-card px-4 py-2 text-xs font-bold text-foreground hover:border-primary/50 hover:text-primary transition-colors shadow-sm"
+                  >
+                    {s.title.split(" — ")[0]}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Discovery Call CTA */}
         <section className="border-t border-border/60 bg-secondary/50">
           <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-16">
             <div className="flex flex-col items-start gap-5 rounded-3xl bg-brand p-6 sm:p-10 text-primary-foreground md:flex-row md:items-center md:justify-between">

@@ -3,7 +3,6 @@ import { useEffect } from "react";
 
 import HomePage from "./routes/index";
 import YespOnePage from "./routes/yesp-one";
-import YespCorePage from "./routes/yesp-core";
 import AboutPage from "./routes/about";
 import ContactPage from "./routes/contact";
 import CareersPage from "./routes/careers";
@@ -26,7 +25,12 @@ import ArticleAiAgentsPage from "./routes/articles.practical-ai-agents-in-enterp
 import ArticleFrameworkPage from "./routes/articles.the-make-better-happen-engineering-framework";
 import ArticleAiDeliveryPage from "./routes/articles.yesp-corp-global-engineering-and-ai-delivery";
 
+import ServicesIndexPage from "./routes/services.index";
 import ServiceDetailPage from "./routes/services.$slug";
+import IndustriesIndexPage from "./routes/industries.index";
+import IndustryDetailPage from "./routes/industries.$slug";
+import LocationDetailPage from "./routes/locations.$slug";
+import SolutionsPage from "./routes/solutions";
 import SearchPage from "./routes/search";
 import CookiesPage from "./routes/cookies";
 import SitelinksPage from "./routes/sitelinks";
@@ -60,7 +64,25 @@ export default function App() {
         <Route path="/founder" element={<FounderPage />} />
 
         {/* Services */}
+        <Route path="/services" element={<ServicesIndexPage />} />
         <Route path="/services/:slug" element={<ServiceDetailPage />} />
+
+        {/* Solutions hub */}
+        <Route path="/solutions" element={<SolutionsPage />} />
+
+        {/* Industries */}
+        <Route path="/industries" element={<IndustriesIndexPage />} />
+        <Route path="/industries/:slug" element={<IndustryDetailPage />} />
+
+        {/* Locations / GEO */}
+        <Route path="/locations/:slug" element={<LocationDetailPage />} />
+        <Route path="/india" element={<LocationDetailPage />} />
+        <Route path="/united-kingdom" element={<LocationDetailPage />} />
+        <Route path="/usa" element={<LocationDetailPage />} />
+        <Route path="/australia" element={<LocationDetailPage />} />
+        <Route path="/singapore" element={<LocationDetailPage />} />
+        <Route path="/canada" element={<LocationDetailPage />} />
+        <Route path="/dubai" element={<LocationDetailPage />} />
 
         {/* Press Center */}
         <Route path="/press" element={<PressIndexPage />} />
